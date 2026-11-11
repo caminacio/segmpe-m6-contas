@@ -1,16 +1,15 @@
 {
-  "name": "segmpe-modulo",
+  "name": "segmpe-modulo-m6-contas",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Módulo da Suíte SegMPE — repositório-modelo. Rode: npm run configurar -- <id> <porta> <grupo>",
+  "description": "Módulo m6-contas da Suíte SegMPE (grupo G6).",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
     "start": "node src/server.js",
     "test": "node --test \"testes/**/*.test.mjs\"",
-    "configurar": "node scripts/configurar.mjs",
     "checar": "node scripts/checar.mjs"
   },
   "dependencies": {

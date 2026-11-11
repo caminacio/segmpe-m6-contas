@@ -1,10 +1,10 @@
 {
-  "modulo": "__ID__",
+  "modulo": "m6-contas",
   "versao": "1.0.0",
   "_leia": "PERGUNTAS DE EXEMPLO. Troque todas pelas do seu módulo, mantendo as regras do CONTRATO.md (seção 6): 10 a 15 perguntas, no máximo 3 de texto_curto, toda pergunta fechada com a opção nao_sei, tema sempre entre os temas do modulo.json.",
   "perguntas": [
     {
-      "id": "MX_Q01",
+      "id": "M6_Q01",
       "tema": "Responsáveis e acessos (exemplo)",
       "tipo": "sim_nao",
       "obrigatoria": true,
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "MX_Q02",
+      "id": "M6_Q02",
       "tema": "Responsáveis e acessos (exemplo)",
       "tipo": "escolha_unica",
       "obrigatoria": true,
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "id": "MX_Q03",
+      "id": "M6_Q03",
       "tema": "Rotinas do dia a dia (exemplo)",
       "tipo": "multipla",
       "obrigatoria": true,
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "MX_Q04",
+      "id": "M6_Q04",
       "tema": "Rotinas do dia a dia (exemplo)",
       "tipo": "escala_1_5",
       "obrigatoria": true,
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "MX_Q05",
+      "id": "M6_Q05",
       "tema": "Canais e atendimento (exemplo)",
       "tipo": "sim_nao",
       "obrigatoria": true,
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "MX_Q06",
+      "id": "M6_Q06",
       "tema": "Canais e atendimento (exemplo)",
       "tipo": "escolha_unica",
       "obrigatoria": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "MX_Q07",
+      "id": "M6_Q07",
       "tema": "Responsáveis e acessos (exemplo)",
       "tipo": "sim_nao",
       "obrigatoria": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "MX_Q08",
+      "id": "M6_Q08",
       "tema": "Rotinas do dia a dia (exemplo)",
       "tipo": "escolha_unica",
       "obrigatoria": false,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "MX_Q09",
+      "id": "M6_Q09",
       "tema": "Rotinas do dia a dia (exemplo)",
       "tipo": "texto_curto",
       "obrigatoria": false,
@@ -129,7 +129,7 @@
       "ajuda": "Escreva com suas palavras, em poucas linhas. Não escreva nomes de pessoas, senhas nem dados de clientes."
     },
     {
-      "id": "MX_Q10",
+      "id": "M6_Q10",
       "tema": "Canais e atendimento (exemplo)",
       "tipo": "texto_curto",
       "obrigatoria": false,

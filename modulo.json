@@ -1,8 +1,8 @@
 {
-  "id": "__ID__",
-  "nome": "Nome do módulo (trocar) — grupo __GRUPO__",
+  "id": "m6-contas",
+  "nome": "Nome do módulo (trocar) — grupo G6",
   "versao": "1.0.0",
-  "grupo": "__GRUPO__",
+  "grupo": "G6",
   "temas": [
     "Responsáveis e acessos (exemplo)",
     "Rotinas do dia a dia (exemplo)",

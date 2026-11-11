@@ -1,16 +1,16 @@
-# __ID__ — Nome do módulo (trocar) · Suíte SegMPE
+# m6-contas — Nome do módulo (trocar) · Suíte SegMPE
 
-> Módulo do grupo __GRUPO__ · porta __PORTA__ · Projeto acadêmico CEUB — Segurança Cibernética, 2º/2026.
+> Módulo do grupo G6 · porta 3006 · Projeto acadêmico CEUB — Segurança Cibernética, 2º/2026.
 > Preencha todas as seções deste README. O que fica em branco conta como pendência na entrega (`CONTRATO.md`, seção 16).
 
 ## Primeiro passo (uma única vez, logo após clonar)
 
 ```bash
 npm install
-npm run configurar -- __ID__ __PORTA__ __GRUPO__
+npm run configurar -- m6-contas 3006 G6
 ```
 
-O comando troca os marcadores `__ID__`, `__PORTA__` e `__GRUPO__` em todos os arquivos e depois se apaga.
+O comando troca os marcadores `m6-contas`, `3006` e `G6` em todos os arquivos e depois se apaga.
 Use o identificador, a porta e o grupo da tabela do `CONTRATO.md` (seção 2) — por exemplo: `npm run configurar -- m3-psi 3003 G3`.
 
 ## O que o módulo faz
@@ -26,7 +26,7 @@ cp .env.example .env     # no PowerShell: Copy-Item .env.example .env
 npm start
 ```
 
-Depois abra `http://localhost:__PORTA__`. O catálogo do design system fica em `http://localhost:__PORTA__/ds/exemplos.html`.
+Depois abra `http://localhost:3006`. O catálogo do design system fica em `http://localhost:3006/ds/exemplos.html`.
 
 | Comando | Para quê |
 |---|---|
@@ -41,7 +41,7 @@ Depois abra `http://localhost:__PORTA__`. O catálogo do design system fica em `
 | `IA_API_KEY` | Chave de acesso à IA | Só no `.env`, nunca no código, nos logs ou no Git |
 | `IA_MODELO` | Nome do modelo | Definido pelo curador |
 | `IA_URL` | Endereço do provedor (formato *Chat Completions*) | Na suíte, aponta para o gateway central |
-| `PORT` | Porta do módulo | `__PORTA__` |
+| `PORT` | Porta do módulo | `3006` |
 
 Sem `IA_API_KEY`, o módulo sobe e mostra uma mensagem clara — não quebra.
 
@@ -49,9 +49,9 @@ Sem `IA_API_KEY`, o módulo sobe e mostra uma mensagem clara — não quebra.
 
 | Rota | O que faz | Respostas |
 |---|---|---|
-| `GET /api/__ID__/saude` | Diz se o módulo está no ar | 200 `{ ok, modulo, versao }` |
-| `GET /api/__ID__/questionario` | Devolve o `questionario.json` | 200 |
-| `POST /api/__ID__/gerar` | Recebe `{ perfil, respostas }`, pontua, chama a IA e devolve o relatório | 200 · 400 entrada inválida · 502 falha da IA |
+| `GET /api/m6-contas/saude` | Diz se o módulo está no ar | 200 `{ ok, modulo, versao }` |
+| `GET /api/m6-contas/questionario` | Devolve o `questionario.json` | 200 |
+| `POST /api/m6-contas/gerar` | Recebe `{ perfil, respostas }`, pontua, chama a IA e devolve o relatório | 200 · 400 entrada inválida · 502 falha da IA |
 | `/` | Serve as telas de `public/` | — |
 
 Corpo da requisição limitado a 100 KB.

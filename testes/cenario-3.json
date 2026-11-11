@@ -2,15 +2,15 @@
   "nome": "Cenário 3 · loja de roupas ME que vende pelo Instagram (fictício)",
   "perfil": "EP-93",
   "respostas": {
-    "MX_Q01": "sim",
-    "MX_Q02": "as_vezes",
-    "MX_Q03": ["senha_por_pessoa", "duas_etapas", "antivirus"],
-    "MX_Q04": "4",
-    "MX_Q06": "pessoas_definidas",
-    "MX_Q07": "sim",
-    "MX_Q08": "mais_de_5",
-    "MX_Q09": "Perder o acesso ao Instagram da loja.",
-    "MX_Q10": "Sistema de vendas."
+    "M6_Q01": "sim",
+    "M6_Q02": "as_vezes",
+    "M6_Q03": ["senha_por_pessoa", "duas_etapas", "antivirus"],
+    "M6_Q04": "4",
+    "M6_Q06": "pessoas_definidas",
+    "M6_Q07": "sim",
+    "M6_Q08": "mais_de_5",
+    "M6_Q09": "Perder o acesso ao Instagram da loja.",
+    "M6_Q10": "Sistema de vendas."
   },
   "esperado": { "indice": 92, "semaforo": "verde" }
 }

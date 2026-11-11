@@ -6,7 +6,7 @@
  *   POST /api/<id>/gerar         valida, pontua, chama a IA e devolve o relatório
  *   /                            serve as telas de public/
  *
- * O <id> vem do modulo.json (vale "__ID__" até você rodar `npm run configurar`).
+ * O <id> vem do modulo.json (vale "m6-contas" até você rodar `npm run configurar`).
  * Mensagens de serviço usam console.info/console.error; nunca registre respostas,
  * prompts ou saídas nos logs (CONTRATO.md, seção 14.4).
  */

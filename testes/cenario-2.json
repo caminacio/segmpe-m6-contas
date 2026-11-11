@@ -2,16 +2,16 @@
   "nome": "Cenário 2 · clínica odontológica ME, com dados de saúde (fictício)",
   "perfil": "EP-92",
   "respostas": {
-    "MX_Q01": "sim",
-    "MX_Q02": "as_vezes",
-    "MX_Q03": ["senha_por_pessoa"],
-    "MX_Q04": "3",
-    "MX_Q05": "sim",
-    "MX_Q06": "pessoas_definidas",
-    "MX_Q07": "nao",
-    "MX_Q08": "1_a_5",
-    "MX_Q09": "Vazar a ficha dos pacientes.",
-    "MX_Q10": "Agenda on-line."
+    "M6_Q01": "sim",
+    "M6_Q02": "as_vezes",
+    "M6_Q03": ["senha_por_pessoa"],
+    "M6_Q04": "3",
+    "M6_Q05": "sim",
+    "M6_Q06": "pessoas_definidas",
+    "M6_Q07": "nao",
+    "M6_Q08": "1_a_5",
+    "M6_Q09": "Vazar a ficha dos pacientes.",
+    "M6_Q10": "Agenda on-line."
   },
   "esperado": { "indice": 64, "semaforo": "amarelo" }
 }

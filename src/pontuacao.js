@@ -21,7 +21,7 @@ export function semaforoDoIndice(indice) {
 /**
  * A pergunta aparece para este perfil e estas respostas?
  * Formato da condição: { "perfil": "P11_site", "igual": "sim" }
- *                   ou { "pergunta": "MX_Q01", "em": ["sim", "nao_sei"] }
+ *                   ou { "pergunta": "M6_Q01", "em": ["sim", "nao_sei"] }
  */
 export function perguntaAplicavel(pergunta, { perfil = {}, respostas = {} } = {}) {
   const condicao = pergunta.condicao;
