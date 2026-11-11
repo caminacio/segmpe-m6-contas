@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__ID__ · Suíte SegMPE</title>
+<link rel="stylesheet" href="ds/segmpe.css">
+</head>
+<body class="seg-app" data-modulo="__ID__">
+
+<header class="seg-topo">
+  <div class="seg-conteudo seg-topo__interno">
+    <a class="seg-marca" href="./"><span class="seg-marca__simbolo" aria-hidden="true"></span>SegMPE <span class="seg-marca__modulo" id="topo-modulo">módulo</span></a>
+    <nav class="seg-topo__nav" aria-label="Etapas">
+      <a href="#tela-perfil" id="nav-perfil">Perfil</a>
+      <a href="#tela-questionario" id="nav-questionario">Questionário</a>
+      <a href="#tela-relatorio" id="nav-relatorio">Relatório</a>
+    </nav>
+  </div>
+</header>
+
+<main class="seg-principal">
+  <div class="seg-conteudo seg-pilha-lg">
+
+    <!-- 1. Perfil ------------------------------------------------------- -->
+    <section id="tela-perfil" aria-labelledby="t-perfil">
+      <div class="seg-heroi">
+        <span class="seg-chamada">Suíte SegMPE · Segurança para micro e pequenas empresas</span>
+        <h1 id="t-perfil">Diagnóstico do módulo</h1>
+        <p id="perfil-descricao">Um questionário curto sobre o dia a dia da empresa. No fim, você recebe um relatório com o que já está bem, o que merece atenção e um plano de ação.</p>
+      </div>
+      <div class="seg-cartao seg-pilha">
+        <span class="seg-cartao__rotulo">Perfil do negócio</span>
+        <div id="perfil-estado" role="status"></div>
+        <div class="seg-campo" id="perfil-importar">
+          <label class="seg-rotulo" for="arquivo-perfil">Importar o perfil (arquivo perfil.json)</label>
+          <span class="seg-ajuda-texto" id="arquivo-perfil-ajuda">O perfil é respondido uma única vez, na suíte. Se você abriu este módulo sozinho, escolha aqui o arquivo que a suíte baixou.</span>
+          <input class="seg-entrada" type="file" id="arquivo-perfil" accept="application/json,.json" aria-describedby="arquivo-perfil-ajuda">
+        </div>
+        <dl class="seg-cabecalho-relatorio" id="perfil-resumo" hidden></dl>
+        <div>
+          <button class="seg-botao" type="button" id="btn-comecar" disabled>Começar o questionário</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Questionário ------------------------------------------------- -->
+    <section id="tela-questionario" aria-labelledby="t-questionario" hidden>
+      <div class="seg-secao-titulo"><span class="seg-chamada">Etapa 1 de 3</span><h2 id="t-questionario">Questionário</h2></div>
+      <div class="seg-cartao seg-cartao--noite">
+        <div class="seg-progresso">
+          <div class="seg-progresso__rotulo"><span>Respondidas</span><span id="progresso-texto">0 de 0</span></div>
+          <progress id="progresso" max="1" value="0" aria-label="Perguntas respondidas">0</progress>
+        </div>
+      </div>
+      <div class="seg-pilha" id="blocos-perguntas"></div>
+      <div class="seg-barra-acoes">
+        <div class="seg-barra-acoes__interno">
+          <button class="seg-botao seg-botao--fantasma" type="button" id="btn-voltar-perfil">← Perfil</button>
+          <span class="seg-barra-acoes__info" id="info-questionario"></span>
+          <button class="seg-botao" type="button" id="btn-revisar">Revisar respostas</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Revisão ------------------------------------------------------ -->
+    <section id="tela-revisao" aria-labelledby="t-revisao" hidden>
+      <div class="seg-secao-titulo"><span class="seg-chamada">Etapa 2 de 3</span><h2 id="t-revisao">Confira as respostas</h2></div>
+      <div id="mensagem-revisao"></div>
+      <div class="seg-cartao">
+        <p>Leia com a empresa antes de gerar o relatório. Para mudar alguma coisa, volte ao questionário.</p>
+        <div class="seg-tabela-rolagem">
+          <table class="seg-tabela">
+            <caption>Respostas que serão enviadas</caption>
+            <thead><tr><th scope="col">Pergunta</th><th scope="col">Resposta</th></tr></thead>
+            <tbody id="revisao-corpo"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="seg-barra-acoes">
+        <div class="seg-barra-acoes__interno">
+          <button class="seg-botao seg-botao--fantasma" type="button" id="btn-voltar-questionario">← Questionário</button>
+          <span class="seg-barra-acoes__info">O nome da empresa nunca é enviado: só o codinome.</span>
+          <button class="seg-botao" type="button" id="btn-gerar">Gerar relatório</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Gerando ------------------------------------------------------ -->
+    <section id="tela-gerando" aria-labelledby="t-gerando" hidden>
+      <h2 id="t-gerando" class="seg-visualmente-oculto">Gerando o relatório</h2>
+      <div class="seg-cartao">
+        <div class="seg-gerando" role="status" aria-live="polite">
+          <div class="seg-gerando__anel" aria-hidden="true"></div>
+          <strong>Gerando o relatório…</strong>
+          <span class="seg-ajuda-texto">Isso leva alguns segundos. Não feche esta página.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Relatório ---------------------------------------------------- -->
+    <section id="tela-relatorio" aria-labelledby="t-relatorio" hidden>
+      <div class="seg-secao-titulo seg-nao-imprimir"><span class="seg-chamada">Etapa 3 de 3</span><h2 id="t-relatorio">Relatório</h2></div>
+      <div id="mensagem-relatorio"></div>
+      <div class="seg-cartao">
+        <article class="seg-relatorio">
+          <header class="seg-cabecalho-relatorio">
+            <div><span class="seg-cartao__rotulo">Relatório do módulo</span><h2 id="relatorio-titulo" style="margin:0;border:0"></h2></div>
+            <dl><dt>Codinome</dt><dd id="relatorio-codinome"></dd><dt>Gerado em</dt><dd id="relatorio-data"></dd></dl>
+          </header>
+
+          <section id="bloco-resumo">
+            <h3>Resumo para o dono</h3>
+            <div id="relatorio-resumo"></div>
+          </section>
+
+          <h3>Como está hoje</h3>
+          <div class="seg-indice">
+            <div class="seg-indice__numero" id="indice-numero"><span id="indice-valor">0</span><small> / 100</small></div>
+            <div id="indice-selo"></div>
+            <div class="seg-indice__barra" id="indice-barra" role="img" aria-label="Índice geral"><span class="seg-indice__marcador" id="indice-marcador" style="left:0%"></span></div>
+          </div>
+          <ul class="seg-temas" id="relatorio-temas"></ul>
+
+          <section id="bloco-fortes">
+            <h3>O que já está bem</h3>
+            <ul class="seg-lista-mais" id="relatorio-fortes"></ul>
+          </section>
+
+          <section id="bloco-atencao">
+            <h3>Pontos de atenção</h3>
+            <div id="relatorio-atencao"></div>
+          </section>
+
+          <section id="bloco-plano">
+          <h3>Plano de ação</h3>
+          <div class="seg-tabela-rolagem">
+            <table class="seg-tabela">
+              <thead><tr><th scope="col">#</th><th scope="col">O que fazer</th><th scope="col">Por quê</th><th scope="col">Esforço</th><th scope="col">Custo</th><th scope="col">Quando</th></tr></thead>
+              <tbody id="relatorio-plano"></tbody>
+            </table>
+          </div>
+          </section>
+
+          <div id="relatorio-artefatos"></div>
+
+          <p class="seg-aviso-legal" id="relatorio-aviso">Material educacional de apoio; não substitui consultoria especializada, auditoria ou assessoria jurídica.</p>
+        </article>
+      </div>
+      <div class="seg-barra-acoes seg-barra-acoes--estatica seg-nao-imprimir">
+        <div class="seg-barra-acoes__interno">
+          <button class="seg-botao seg-botao--fantasma" type="button" id="btn-ir-exportar">Exportar dados</button>
+          <span class="seg-barra-acoes__info">O nome real da empresa entra só no Kit final, feito pelo curador.</span>
+          <button class="seg-botao" type="button" id="btn-imprimir">Imprimir / Salvar PDF</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Exportar ----------------------------------------------------- -->
+    <section id="tela-exportar" aria-labelledby="t-exportar" hidden>
+      <div class="seg-secao-titulo"><span class="seg-chamada">Arquivos</span><h2 id="t-exportar">Exportar</h2></div>
+      <div class="seg-cartao seg-pilha">
+        <div class="seg-aviso seg-aviso--info" role="note">Os arquivos têm só o codinome, o perfil, as respostas e o relatório. Guarde-os no local combinado com o curador, nunca por WhatsApp ou e-mail pessoal.</div>
+        <div>
+          <button class="seg-botao seg-botao--secundario" type="button" id="btn-baixar-respostas">Baixar as respostas (JSON)</button>
+          <button class="seg-botao seg-botao--secundario" type="button" id="btn-baixar-saida" disabled>Baixar o relatório (JSON)</button>
+        </div>
+        <div><button class="seg-botao seg-botao--fantasma" type="button" id="btn-voltar-relatorio">← Relatório</button></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="seg-rodape">
+  <div class="seg-conteudo">
+    <strong>Suíte SegMPE</strong> · Projeto acadêmico do CEUB · Segurança Cibernética, 2º/2026 · módulo <span id="rodape-modulo">__ID__</span>
+  </div>
+</footer>
+
+<script type="module" src="modulo.js"></script>
+</body>
+</html>

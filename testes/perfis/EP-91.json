@@ -1,0 +1,16 @@
+{
+  "codinome": "EP-91",
+  "P01_ramo": "alimentacao",
+  "P02_porte": "mei",
+  "P03_pessoas": "2-5",
+  "P04_tempo": "mais_de_10",
+  "P05_uf": "DF",
+  "P06_canais": ["loja_fisica", "whatsapp"],
+  "P07_pagamentos": ["dinheiro", "pix", "cartao_maquininha"],
+  "P08_dados": ["contato"],
+  "P09_equipamentos": ["celular_pessoal"],
+  "P10_sistemas": ["nenhum"],
+  "P11_site": "nao",
+  "P12_ti": "dono",
+  "P13_incidente": "nao"
+}

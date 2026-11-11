@@ -1,0 +1,16 @@
+{
+  "codinome": "EP-92",
+  "P01_ramo": "saude",
+  "P02_porte": "me",
+  "P03_pessoas": "6-10",
+  "P04_tempo": "4-10",
+  "P05_uf": "DF",
+  "P06_canais": ["loja_fisica", "whatsapp", "instagram"],
+  "P07_pagamentos": ["pix", "cartao_maquininha"],
+  "P08_dados": ["contato", "cpf", "saude"],
+  "P09_equipamentos": ["computador", "celular_empresa"],
+  "P10_sistemas": ["agenda_online", "planilhas"],
+  "P11_site": "sim",
+  "P12_ti": "terceirizado",
+  "P13_incidente": "nao_sei"
+}

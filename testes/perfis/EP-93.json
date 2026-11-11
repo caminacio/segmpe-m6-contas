@@ -1,0 +1,16 @@
+{
+  "codinome": "EP-93",
+  "P01_ramo": "comercio_varejista",
+  "P02_porte": "me",
+  "P03_pessoas": "2-5",
+  "P04_tempo": "1-3",
+  "P05_uf": "GO",
+  "P06_canais": ["loja_fisica", "instagram", "whatsapp"],
+  "P07_pagamentos": ["pix", "cartao_maquininha", "link_pagamento"],
+  "P08_dados": ["contato", "endereco"],
+  "P09_equipamentos": ["notebook", "celular_empresa"],
+  "P10_sistemas": ["sistema_gestao", "planilhas"],
+  "P11_site": "nao",
+  "P12_ti": "terceirizado",
+  "P13_incidente": "sim"
+}

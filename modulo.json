@@ -1,0 +1,18 @@
+{
+  "id": "__ID__",
+  "nome": "Nome do módulo (trocar) — grupo __GRUPO__",
+  "versao": "1.0.0",
+  "grupo": "__GRUPO__",
+  "temas": [
+    "Responsáveis e acessos (exemplo)",
+    "Rotinas do dia a dia (exemplo)",
+    "Canais e atendimento (exemplo)"
+  ],
+  "artefatos": [
+    { "id": "exemplo", "titulo": "Artefato de exemplo (trocar pelos artefatos do módulo)" }
+  ],
+  "referencias": [
+    "LGPD — Lei nº 13.709/2018",
+    "Cartilha de Segurança para Internet (CERT.br)"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "segmpe-modulo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Módulo da Suíte SegMPE — repositório-modelo. Rode: npm run configurar -- <id> <porta> <grupo>",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test \"testes/**/*.test.mjs\"",
+    "configurar": "node scripts/configurar.mjs",
+    "checar": "node scripts/checar.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0"
+  }
+}

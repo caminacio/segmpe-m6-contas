@@ -1,0 +1,140 @@
+{
+  "modulo": "__ID__",
+  "versao": "1.0.0",
+  "_leia": "PERGUNTAS DE EXEMPLO. Troque todas pelas do seu módulo, mantendo as regras do CONTRATO.md (seção 6): 10 a 15 perguntas, no máximo 3 de texto_curto, toda pergunta fechada com a opção nao_sei, tema sempre entre os temas do modulo.json.",
+  "perguntas": [
+    {
+      "id": "MX_Q01",
+      "tema": "Responsáveis e acessos (exemplo)",
+      "tipo": "sim_nao",
+      "obrigatoria": true,
+      "texto": "Existe uma pessoa responsável por cuidar da tecnologia da empresa?",
+      "ajuda": "Pode ser o dono, um funcionário ou uma empresa contratada. Vale quem as pessoas procuram quando o computador ou o sistema dá problema.",
+      "opcoes": [
+        { "valor": "sim", "rotulo": "Sim", "pontos": 2 },
+        { "valor": "nao", "rotulo": "Não", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "MX_Q02",
+      "tema": "Responsáveis e acessos (exemplo)",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "Quando alguém deixa de trabalhar na empresa, os acessos dessa pessoa são retirados?",
+      "ajuda": "Retirar acesso é apagar o usuário ou trocar a senha dos sistemas, do e-mail e do WhatsApp da empresa.",
+      "opcoes": [
+        { "valor": "sempre", "rotulo": "Sim, sempre", "pontos": 2 },
+        { "valor": "as_vezes", "rotulo": "Às vezes", "pontos": 1 },
+        { "valor": "nunca", "rotulo": "Nunca", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 },
+        { "valor": "nao_se_aplica", "rotulo": "Não se aplica (ninguém saiu até hoje)", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "MX_Q03",
+      "tema": "Rotinas do dia a dia (exemplo)",
+      "tipo": "multipla",
+      "obrigatoria": true,
+      "maximo": 2,
+      "texto": "Quais destes cuidados a empresa já tem hoje?",
+      "ajuda": "Marque todos os que já existem. Se não tiver nenhum, marque \"Nenhum desses\" — isso não é problema, serve para sabermos por onde começar.",
+      "opcoes": [
+        { "valor": "senha_por_pessoa", "rotulo": "Cada pessoa tem o seu próprio usuário e senha", "pontos": 1 },
+        { "valor": "duas_etapas", "rotulo": "O e-mail da empresa pede um código além da senha", "pontos": 1 },
+        { "valor": "antivirus", "rotulo": "Os computadores têm antivírus ativo", "pontos": 1 },
+        { "valor": "nenhum", "rotulo": "Nenhum desses", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "MX_Q04",
+      "tema": "Rotinas do dia a dia (exemplo)",
+      "tipo": "escala_1_5",
+      "obrigatoria": true,
+      "texto": "De 1 a 5, o quanto a equipe saberia o que fazer se algo estranho acontecesse com o computador ou o sistema?",
+      "ajuda": "1 é \"ninguém saberia o que fazer\" e 5 é \"todos sabem a quem avisar e o que não fazer\".",
+      "legenda": { "minimo": "1 · ninguém saberia", "maximo": "5 · todos sabem" },
+      "opcoes": [
+        { "valor": "1", "rotulo": "1", "pontos": 0 },
+        { "valor": "2", "rotulo": "2", "pontos": 0 },
+        { "valor": "3", "rotulo": "3", "pontos": 1 },
+        { "valor": "4", "rotulo": "4", "pontos": 2 },
+        { "valor": "5", "rotulo": "5", "pontos": 2 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "MX_Q05",
+      "tema": "Canais e atendimento (exemplo)",
+      "tipo": "sim_nao",
+      "obrigatoria": true,
+      "condicao": { "perfil": "P11_site", "igual": "sim" },
+      "texto": "O endereço do site da empresa aparece com o cadeado fechado no navegador?",
+      "ajuda": "O cadeado fica antes do endereço e indica que a conexão é protegida (https). Esta pergunta só aparece porque o perfil disse que a empresa tem site.",
+      "opcoes": [
+        { "valor": "sim", "rotulo": "Sim", "pontos": 2 },
+        { "valor": "nao", "rotulo": "Não", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "MX_Q06",
+      "tema": "Canais e atendimento (exemplo)",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "Quem pode responder o WhatsApp ou as redes sociais da empresa?",
+      "ajuda": "Vale saber se é uma pessoa só, um grupo definido ou se qualquer pessoa da equipe responde.",
+      "opcoes": [
+        { "valor": "pessoas_definidas", "rotulo": "Apenas pessoas definidas pelo dono", "pontos": 2 },
+        { "valor": "equipe_toda", "rotulo": "Qualquer pessoa da equipe", "pontos": 1 },
+        { "valor": "sem_controle", "rotulo": "Ninguém controla isso", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "MX_Q07",
+      "tema": "Responsáveis e acessos (exemplo)",
+      "tipo": "sim_nao",
+      "obrigatoria": true,
+      "texto": "A empresa tem uma lista dos sistemas e serviços que usa?",
+      "ajuda": "Uma lista simples, em papel ou planilha, com o nome de cada sistema e quem cuida dele.",
+      "opcoes": [
+        { "valor": "sim", "rotulo": "Sim", "pontos": 2 },
+        { "valor": "nao", "rotulo": "Não", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "MX_Q08",
+      "tema": "Rotinas do dia a dia (exemplo)",
+      "tipo": "escolha_unica",
+      "obrigatoria": false,
+      "pontua": false,
+      "texto": "Quantas horas por semana alguém dedica à parte de tecnologia da empresa?",
+      "ajuda": "Pergunta de contexto: ajuda a IA a sugerir medidas do tamanho da sua rotina. Não entra na nota.",
+      "opcoes": [
+        { "valor": "menos_de_1", "rotulo": "Menos de 1 hora", "pontos": 0 },
+        { "valor": "1_a_5", "rotulo": "De 1 a 5 horas", "pontos": 0 },
+        { "valor": "mais_de_5", "rotulo": "Mais de 5 horas", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "MX_Q09",
+      "tema": "Rotinas do dia a dia (exemplo)",
+      "tipo": "texto_curto",
+      "obrigatoria": false,
+      "texto": "Qual é a maior preocupação de vocês com as informações da empresa?",
+      "ajuda": "Escreva com suas palavras, em poucas linhas. Não escreva nomes de pessoas, senhas nem dados de clientes."
+    },
+    {
+      "id": "MX_Q10",
+      "tema": "Canais e atendimento (exemplo)",
+      "tipo": "texto_curto",
+      "obrigatoria": false,
+      "texto": "Qual sistema ou serviço vocês mais usam no dia a dia?",
+      "ajuda": "Cite só o nome do sistema (por exemplo: sistema de vendas, agenda on-line). Nunca escreva senhas."
+    }
+  ]
+}
