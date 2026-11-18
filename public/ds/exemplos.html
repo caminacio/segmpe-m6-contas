@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Design System SegMPE · catálogo v1.0</title>
+<title>Design System SegMPE · catálogo v1.1</title>
 <link rel="stylesheet" href="segmpe.css">
 <style>
   /* estilos só do catálogo (não usar nos módulos) */
@@ -25,9 +25,9 @@
 <body class="seg-app">
 <header class="seg-topo">
   <div class="seg-conteudo seg-topo__interno">
-    <a class="seg-marca" href="#inicio"><span class="seg-marca__simbolo" aria-hidden="true"></span>SegMPE <span class="seg-marca__modulo">Design System v1.0</span></a>
+    <a class="seg-marca" href="#inicio"><span class="seg-marca__simbolo" aria-hidden="true"></span>SegMPE <span class="seg-marca__modulo">Design System v1.1</span></a>
     <nav class="seg-topo__nav" aria-label="Seções do catálogo">
-      <a href="#cores">Cores</a><a href="#botoes">Botões</a><a href="#pergunta">Questionário</a><a href="#semaforo">Resultado</a><a href="#relatorio">Relatório</a>
+      <a href="#operacoes">Operações</a><a href="#cores">Cores</a><a href="#botoes">Botões</a><a href="#pergunta">Questionário</a><a href="#semaforo">Resultado</a><a href="#relatorio">Relatório</a>
     </nav>
   </div>
 </header>
@@ -40,7 +40,8 @@
       <p>Tokens, componentes e utilidades que todos os módulos usam — para a suíte parecer um produto só, acessível e pronta para imprimir.</p>
       <div class="cat-linha" style="justify-content:center">
         <a class="seg-botao" href="#pergunta">Ver o questionário</a>
-        <a class="seg-botao seg-botao--secundario" href="#relatorio">Ver o relatório</a>
+        <a class="seg-botao seg-botao--secundario" href="#operacoes">Novos na 1.1</a>
+        <a class="seg-botao seg-botao--secundario" href="suite-previa.html">Prévia da suíte</a>
       </div>
     </section>
     <section class="seg-cartao seg-cartao--noite" aria-labelledby="t-uso">
@@ -48,8 +49,9 @@
       <h2 id="t-uso">Três arquivos, nenhuma dependência</h2>
       <ul class="seg-lista-mais">
         <li><code>segmpe.css</code> — tokens <code>--seg-*</code>, componentes <code>seg-*</code> e impressão A4.</li>
-        <li><code>segmpe.js</code> — <code>obterPerfil()</code>, <code>renderizarMarkdown()</code>, <code>classeSemaforo()</code>, <code>semaforoDoIndice()</code>, <code>baixarJSON()</code>, <code>anunciar()</code> e a barra da suíte.</li>
-        <li><code>exemplos.html</code> — este catálogo: copie o código de cada exemplo.</li>
+        <li><code>segmpe.js</code> — <code>obterPerfil()</code>, <code>renderizarMarkdown()</code>, <code>classeSemaforo()</code>, <code>semaforoDoIndice()</code>, <code>baixarJSON()</code>, <code>anunciar()</code>, a barra da suíte e, na 1.1, <code>animarIndice()</code>, <code>criarAnelIndice()</code>, <code>iniciarVarredura()</code>, <code>pararVarredura()</code> e <code>revelarPaineis()</code>.</li>
+        <li><code>fontes/</code> e <code>img/</code> — Saira e JetBrains Mono (licença OFL) e a foto ilustrativa; nada vem da internet.</li>
+        <li><code>exemplos.html</code> — este catálogo: copie o código de cada exemplo. <code>suite-previa.html</code> mostra a tela inicial da suíte.</li>
       </ul>
       <details class="cat-codigo"><summary>Ver o esqueleto de uma tela</summary><pre><code>&lt;!-- No index.html do módulo (caminhos relativos, sem barra inicial) --&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;ds/segmpe.css&quot;&gt;
@@ -400,6 +402,79 @@ import { obterPerfil, renderizarMarkdown, classeSemaforo, baixarJSON, anunciar }
   renderizarMarkdown(document.getElementById(&quot;relatorio-md&quot;), saida.artefatos[0].conteudoMarkdown);
 &lt;/script&gt;</code></pre></details>
 </section>
+<section id="operacoes" class="cat-secao" aria-labelledby="t-operacoes">
+  <div class="seg-secao-titulo"><span class="seg-chamada">Novos na 1.1</span><h2 id="t-operacoes">Centro de operações</h2></div>
+  <p class="cat-nota">Componentes que dão o clima de painel de diagnóstico. O movimento sempre informa um estado (analisando, pronto, resultado) e desliga sozinho para quem pede menos movimento no sistema. Em formulários, use com moderação: o foco é o dono do negócio respondendo.</p>
+  <h3 style="margin-top: var(--seg-esp-6)">Foto com mira e varredura</h3>
+  <p class="cat-nota">Moldura <code>seg-foto</code>; a classe <code>seg-foto--varrendo</code> liga a varredura contínua (use só em destaques, como a capa da suíte). Marque pontos com <code>seg-foto__alvo</code> e as variáveis <code>--x --y --w --h</code> em %.</p>
+  <figure class="seg-foto seg-foto--varrendo" style="aspect-ratio: 16 / 9; max-width: 960px">
+  <img src="img/capa-medica.webp" alt="Médica no consultório, à noite, trabalhando no notebook" width="1080" height="602">
+  <div class="seg-foto__alvo" style="--x:56%; --y:56%; --w:13%; --h:26%; --i:0"><span>alvo · prontuários no notebook</span></div>
+  <div class="seg-foto__alvo seg-foto__alvo--gelo" style="--x:73%; --y:80%; --w:13%; --h:11%; --i:1"><span>alvo · senha anotada?</span></div>
+  <figcaption><span>EP-91 · consultório · varredura</span><span>foto ilustrativa gerada por IA</span></figcaption>
+</figure>
+  <details class="cat-codigo"><summary>Ver o código</summary><pre><code>&lt;figure class=&quot;seg-foto seg-foto--varrendo&quot; style=&quot;aspect-ratio: 16 / 9; max-width: 960px&quot;&gt;
+  &lt;img src=&quot;img/capa-medica.webp&quot; alt=&quot;Médica no consultório, à noite, trabalhando no notebook&quot; width=&quot;1080&quot; height=&quot;602&quot;&gt;
+  &lt;div class=&quot;seg-foto__alvo&quot; style=&quot;--x:56%; --y:56%; --w:13%; --h:26%; --i:0&quot;&gt;&lt;span&gt;alvo · prontuários no notebook&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;seg-foto__alvo seg-foto__alvo--gelo&quot; style=&quot;--x:73%; --y:80%; --w:13%; --h:11%; --i:1&quot;&gt;&lt;span&gt;alvo · senha anotada?&lt;/span&gt;&lt;/div&gt;
+  &lt;figcaption&gt;&lt;span&gt;EP-91 · consultório · varredura&lt;/span&gt;&lt;span&gt;foto ilustrativa gerada por IA&lt;/span&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre></details>
+
+  <h3 style="margin-top: var(--seg-esp-6)">Painel holográfico</h3>
+  <p class="cat-nota"><code>seg-hud</code> (equivale ao antigo <code>seg-cartao--noite</code>, que continua valendo). <code>seg-revelar</code> faz o painel “abrir” quando entra na tela — chame <code>revelarPaineis()</code> uma vez.</p>
+  <section class="seg-hud seg-revelar" aria-labelledby="hud-t">
+  <div class="seg-hud__cabecalho"><span>M6 · /m6-contas/</span><span class="seg-hud__status seg-hud__status--alerta">em andamento</span></div>
+  <h3 id="hud-t">Contas e Senhas</h3>
+  <p>Painel holográfico: moldura com cantoneiras, cabeçalho de telemetria e status com luz.</p>
+  <ul class="seg-telemetria"><li>8 de 12 perguntas</li><li>atualizado 17/11 21:40</li></ul>
+</section>
+  <details class="cat-codigo"><summary>Ver o código</summary><pre><code>&lt;section class=&quot;seg-hud seg-revelar&quot; aria-labelledby=&quot;hud-t&quot;&gt;
+  &lt;div class=&quot;seg-hud__cabecalho&quot;&gt;&lt;span&gt;M6 · /m6-contas/&lt;/span&gt;&lt;span class=&quot;seg-hud__status seg-hud__status--alerta&quot;&gt;em andamento&lt;/span&gt;&lt;/div&gt;
+  &lt;h3 id=&quot;hud-t&quot;&gt;Contas e Senhas&lt;/h3&gt;
+  &lt;p&gt;Painel holográfico: moldura com cantoneiras, cabeçalho de telemetria e status com luz.&lt;/p&gt;
+  &lt;ul class=&quot;seg-telemetria&quot;&gt;&lt;li&gt;8 de 12 perguntas&lt;/li&gt;&lt;li&gt;atualizado 17/11 21:40&lt;/li&gt;&lt;/ul&gt;
+&lt;/section&gt;</code></pre></details>
+
+  <h3 style="margin-top: var(--seg-esp-6)">Anel do índice</h3>
+  <p class="cat-nota"><code>seg-anel</code> mostra o índice de 0 a 100 com a cor do semáforo. Sempre acompanhe com o selo do semáforo ou texto — a cor sozinha não basta.</p>
+  <div class="cat-linha" style="gap: 32px">
+  <div class="seg-anel" data-valor="78"><span class="seg-anel__valor"><span class="seg-anel__num">78</span><small>índice</small></span></div>
+  <div class="seg-anel" data-valor="55"><span class="seg-anel__valor"><span class="seg-anel__num">55</span><small>índice</small></span></div>
+  <div class="seg-anel seg-anel--pequeno" data-valor="32"><span class="seg-anel__valor"><span class="seg-anel__num">32</span></span></div>
+  <button class="seg-botao seg-botao--secundario seg-botao--pequeno" type="button" id="btn-aneis">Animar de novo</button>
+</div>
+  <details class="cat-codigo"><summary>Ver o código</summary><pre><code>&lt;div class=&quot;cat-linha&quot; style=&quot;gap: 32px&quot;&gt;
+  &lt;div class=&quot;seg-anel&quot; data-valor=&quot;78&quot;&gt;&lt;span class=&quot;seg-anel__valor&quot;&gt;&lt;span class=&quot;seg-anel__num&quot;&gt;78&lt;/span&gt;&lt;small&gt;índice&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;seg-anel&quot; data-valor=&quot;55&quot;&gt;&lt;span class=&quot;seg-anel__valor&quot;&gt;&lt;span class=&quot;seg-anel__num&quot;&gt;55&lt;/span&gt;&lt;small&gt;índice&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;seg-anel seg-anel--pequeno&quot; data-valor=&quot;32&quot;&gt;&lt;span class=&quot;seg-anel__valor&quot;&gt;&lt;span class=&quot;seg-anel__num&quot;&gt;32&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;button class=&quot;seg-botao seg-botao--secundario seg-botao--pequeno&quot; type=&quot;button&quot; id=&quot;btn-aneis&quot;&gt;Animar de novo&lt;/button&gt;
+&lt;/div&gt;
+
+import { animarIndice, criarAnelIndice } from &quot;./ds/segmpe.js&quot;;
+
+// já existe no HTML:
+animarIndice(document.querySelector(&quot;.seg-anel&quot;), 78);   // o número sobe, o anel enche, a cor vem do semáforo
+
+// ou crie pelo JS:
+const anel = criarAnelIndice(document, 0, { rotulo: &quot;índice&quot; });
+painel.appendChild(anel);
+animarIndice(anel, resultado.indice);</code></pre></details>
+
+  <h3 style="margin-top: var(--seg-esp-6)">Gerando com varredura</h3>
+  <p class="cat-nota">Para o momento em que a IA trabalha. Também existe o <code>seg-gerando</code> (radar), na seção de avisos.</p>
+  <div class="seg-cartao" id="cartao-varredura">
+  <span class="seg-cartao__rotulo">Relatório · M7</span>
+  <h3>Backup e Incidentes</h3>
+  <p>Enquanto a IA gera o relatório, a varredura percorre o cartão e o leitor de tela ouve o aviso.</p>
+  <button class="seg-botao seg-botao--pequeno" type="button" id="btn-varredura">Simular "gerando…"</button>
+</div>
+  <details class="cat-codigo"><summary>Ver o código</summary><pre><code>import { iniciarVarredura, pararVarredura } from &quot;./ds/segmpe.js&quot;;
+
+iniciarVarredura(cartao, &quot;Gerando o relatório…&quot;);   // liga a varredura + aria-busy + aviso ao leitor de tela
+const resposta = await fetch(&quot;api/m7-backup/gerar&quot;, { method: &quot;POST&quot;, /* … */ });
+pararVarredura(cartao, &quot;Relatório pronto.&quot;);</code></pre></details>
+
+</section>
 <section id="perfil" class="cat-secao" aria-labelledby="t-perfil">
   <div class="seg-secao-titulo"><span class="seg-chamada">Integração</span><h2 id="t-perfil">Perfil comum</h2></div>
   
@@ -424,7 +499,14 @@ if (!perfil) {
 </main>
 <footer class="seg-rodape"><div class="seg-conteudo"><strong>SegMPE</strong> · projeto acadêmico do CEUB · Segurança Cibernética 2º/2026 · Material educacional de apoio; não substitui consultoria especializada, auditoria ou assessoria jurídica.</div></footer>
 <script type="module">
-import { renderizarMarkdown, obterPerfil, gravarPerfil, importarPerfil, imprimir, anunciar } from "./segmpe.js";
+import { renderizarMarkdown, obterPerfil, gravarPerfil, importarPerfil, imprimir, anunciar, animarIndice, revelarPaineis, iniciarVarredura, pararVarredura } from "./segmpe.js";
+revelarPaineis();
+const aneis = [...document.querySelectorAll(".seg-anel[data-valor]")];
+const animar = () => aneis.forEach((a) => animarIndice(a, Number(a.dataset.valor)));
+if ("IntersectionObserver" in window) { const o = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { animar(); o.disconnect(); } }, { threshold: 0.5 }); o.observe(aneis[0]); } else animar();
+document.getElementById("btn-aneis").addEventListener("click", () => { aneis.forEach((a) => animarIndice(a, 0, { duracao: 0 })); requestAnimationFrame(animar); });
+const cartaoV = document.getElementById("cartao-varredura"), btnV = document.getElementById("btn-varredura");
+btnV.addEventListener("click", () => { btnV.disabled = true; iniciarVarredura(cartaoV, "Gerando o relatório…"); setTimeout(() => { pararVarredura(cartaoV, "Relatório pronto."); btnV.disabled = false; }, 3000); });
 
 const exemplo = `## O que encontramos
 A empresa guarda **contato** e **endereço** de clientes numa planilha que todos podem abrir.
@@ -444,7 +526,7 @@ A empresa guarda **contato** e **endereço** de clientes numa planilha que todos
 > Dica: o aviso de privacidade pode ficar no balcão.
 
 Mais orientações na [Cartilha de Segurança](https://cartilha.cert.br).`;
-const ataque = "<script>alert('xss')</script>\n\n<img src=x onerror=alert(1)>\n\n**<b>negrito em HTML</b>** e [clique aqui](javascript:alert(2))";
+const ataque = "<script>alert('xss')<\/script>\n\n<img src=x onerror=alert(1)>\n\n**<b>negrito em HTML</b>** e [clique aqui](javascript:alert(2))";
 const alvo = document.getElementById("relatorio-md");
 renderizarMarkdown(alvo, exemplo);
 document.getElementById("btn-ataque").addEventListener("click", (e) => {

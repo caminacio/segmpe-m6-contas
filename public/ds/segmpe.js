@@ -1,8 +1,11 @@
-// SegMPE · Design System · segmpe.js · v1.0.0
+// SegMPE · Design System · segmpe.js · v1.1.0
 // Utilidades comuns a todos os módulos. ES Module, sem dependências externas.
 // Não edite dentro dos módulos: peça mudanças ao curador.
+// 1.1.0: mesmas funções da 1.0 + movimento do "centro de operações"
+//        (animarIndice, criarAnelIndice, iniciarVarredura, pararVarredura,
+//         revelarPaineis, ativarInclinacao, movimentoReduzido).
 
-export const VERSAO = "1.0.0";
+export const VERSAO = "1.1.0";
 const CHAVE_PERFIL = "segmpe.perfil";
 const CHAVE_SUITE = "segmpe.suite";
 
@@ -241,6 +244,123 @@ export function anunciar(mensagem) {
     document.body.appendChild(r);
   }
   r.textContent = ""; setTimeout(() => { r.textContent = mensagem; }, 50);
+}
+
+/* ------------------------------------------------------------------ */
+/* Movimento (1.1) — sempre comunica um estado; respeita quem pede     */
+/* menos movimento (prefers-reduced-motion) e nunca esconde conteúdo.  */
+/* ------------------------------------------------------------------ */
+
+/** true quando o sistema pede menos movimento (ou fora do navegador). */
+export function movimentoReduzido() {
+  try { return !globalThis.matchMedia || globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  catch { return true; }
+}
+
+const limitar = (v) => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
+const suavizar = (t) => 1 - Math.pow(2, -10 * t);   // expo-out, igual a --seg-ease
+
+/**
+ * Anima um índice de 0 até `valor` (0–100): o número sobe e, se o elemento for
+ * um .seg-anel, o anel enche e ganha a cor do semáforo. Devolve uma Promise.
+ * Aceita o .seg-anel, o .seg-indice__numero ou qualquer elemento com texto.
+ */
+export function animarIndice(elemento, valor, { duracao = 900 } = {}) {
+  const alvo = limitar(valor);
+  const anel = elemento?.classList?.contains("seg-anel") ? elemento : null;
+  const saida = anel?.querySelector?.(".seg-anel__num") ?? elemento?.querySelector?.(".seg-anel__num") ?? elemento;
+  const pintar = (v) => {
+    if (saida) saida.textContent = String(v);
+    if (anel) anel.style.setProperty("--seg-p", String(v));
+  };
+  if (anel) {
+    for (const c of ["verde", "amarelo", "vermelho"]) anel.classList.remove(`seg-anel--${c}`);
+    anel.classList.add(`seg-anel--${semaforoDoIndice(alvo)}`);
+    anel.setAttribute("role", "img");
+    anel.setAttribute("aria-label", `Índice ${alvo} de 100 — ${ROTULOS[semaforoDoIndice(alvo)]}`);
+  }
+  if (movimentoReduzido() || typeof requestAnimationFrame !== "function" || duracao <= 0) { pintar(alvo); return Promise.resolve(alvo); }
+  return new Promise((resolve) => {
+    const inicio = performance.now();
+    const passo = (agora) => {
+      const t = Math.min(1, (agora - inicio) / duracao);
+      pintar(Math.round(alvo * suavizar(t)));
+      if (t < 1) requestAnimationFrame(passo); else { pintar(alvo); resolve(alvo); }
+    };
+    requestAnimationFrame(passo);
+  });
+}
+
+/** Cria um anel do índice pronto para inserir: <div class="seg-anel"><span class="seg-anel__valor">…</span></div>. */
+export function criarAnelIndice(doc, valor, { rotulo = "índice", pequeno = false } = {}) {
+  const anel = doc.createElement("div");
+  anel.className = "seg-anel" + (pequeno ? " seg-anel--pequeno" : "");
+  const v = doc.createElement("span"); v.className = "seg-anel__valor";
+  const n = doc.createElement("span"); n.className = "seg-anel__num"; n.textContent = "0";
+  const s = doc.createElement("small"); s.textContent = rotulo;
+  v.appendChild(n); v.appendChild(s); anel.appendChild(v);
+  if (valor !== undefined) { const a = limitar(valor); n.textContent = String(a); anel.style?.setProperty?.("--seg-p", String(a)); anel.classList.add(`seg-anel--${semaforoDoIndice(a)}`); }
+  return anel;
+}
+
+/** Liga a varredura (ex.: enquanto a IA gera o relatório) e marca aria-busy. */
+export function iniciarVarredura(elemento, mensagem) {
+  if (!elemento) return;
+  elemento.classList.add("seg-varredura");
+  elemento.setAttribute("aria-busy", "true");
+  if (mensagem) anunciar(mensagem);
+}
+
+/** Desliga a varredura. */
+export function pararVarredura(elemento, mensagem) {
+  if (!elemento) return;
+  elemento.classList.remove("seg-varredura");
+  elemento.setAttribute("aria-busy", "false");
+  if (mensagem) anunciar(mensagem);
+}
+
+/**
+ * Painéis com a classe .seg-revelar "abrem" quando entram na tela.
+ * O conteúdo já está visível antes disso; a animação só marca a chegada.
+ * Para escalonar uma lista, use style="--i: 0", "--i: 1"… Devolve uma função para desligar.
+ */
+export function revelarPaineis(raiz = globalThis.document) {
+  if (!raiz?.querySelectorAll) return () => {};
+  const itens = [...raiz.querySelectorAll(".seg-revelar:not(.seg-revelado)")];
+  if (movimentoReduzido() || typeof IntersectionObserver !== "function") { itens.forEach((el) => el.classList.add("seg-revelado")); return () => {}; }
+  const obs = new IntersectionObserver((entradas) => {
+    for (const e of entradas) if (e.isIntersecting) { e.target.classList.add("seg-revelado"); obs.unobserve(e.target); }
+  }, { threshold: 0.15 });
+  itens.forEach((el) => obs.observe(el));
+  return () => obs.disconnect();
+}
+
+/**
+ * Inclinação holográfica: o painel acompanha o mouse (até `maximo` graus) e ganha
+ * um reflexo de luz. Só com mouse de verdade e sem pedido de menos movimento.
+ * Pensado para a casca da suíte — não use em formulários. Devolve uma função para desligar.
+ */
+export function ativarInclinacao(elemento, { maximo = 5 } = {}) {
+  if (!elemento || movimentoReduzido() || !globalThis.matchMedia?.("(pointer: fine)").matches) return () => {};
+  elemento.classList.add("seg-inclinavel");
+  if (getComputedStyle(elemento).position === "static") elemento.style.position = "relative";
+  let quadro = 0;
+  const mover = (ev) => {
+    const r = elemento.getBoundingClientRect();
+    const x = (ev.clientX - r.left) / r.width, y = (ev.clientY - r.top) / r.height;
+    cancelAnimationFrame(quadro);
+    quadro = requestAnimationFrame(() => {
+      elemento.style.setProperty("--seg-ry", `${((x - 0.5) * 2 * maximo).toFixed(2)}deg`);
+      elemento.style.setProperty("--seg-rx", `${((0.5 - y) * 2 * maximo).toFixed(2)}deg`);
+      elemento.style.setProperty("--seg-mx", `${(x * 100).toFixed(1)}%`);
+      elemento.style.setProperty("--seg-my", `${(y * 100).toFixed(1)}%`);
+      elemento.style.setProperty("--seg-luz", "1");
+    });
+  };
+  const sair = () => { cancelAnimationFrame(quadro); for (const p of ["--seg-rx", "--seg-ry"]) elemento.style.setProperty(p, "0deg"); elemento.style.setProperty("--seg-luz", "0"); };
+  elemento.addEventListener("pointermove", mover);
+  elemento.addEventListener("pointerleave", sair);
+  return () => { elemento.removeEventListener("pointermove", mover); elemento.removeEventListener("pointerleave", sair); sair(); elemento.classList.remove("seg-inclinavel"); };
 }
 
 /** Dentro da suíte, insere no topo a barra "Voltar à Suíte". Fora dela, não faz nada. */

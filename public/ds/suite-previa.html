@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suíte SegMPE · prévia da tela inicial (dados fictícios)</title>
+<link rel="stylesheet" href="segmpe.css">
+<style>
+  /* Só desta prévia: a composição da tela inicial da suíte. Os componentes vêm do segmpe.css. */
+  .pv-palco { position: relative; min-height: min(640px, 82vh); display: grid; align-items: center; overflow: hidden; border-bottom: 1px solid var(--seg-gelo-linha); }
+  .pv-palco .seg-foto { position: absolute; inset: 0; border: 0; }
+  .pv-palco .seg-foto img { object-position: 70% 40%; }
+  .pv-palco .seg-foto::before { background:
+      var(--seg-cantoneiras),
+      repeating-linear-gradient(0deg, rgba(169, 200, 242, 0.05) 0 1px, transparent 1px 3px),
+      linear-gradient(90deg, rgba(20, 7, 15, 0.96) 0%, rgba(20, 7, 15, 0.82) 34%, rgba(20, 7, 15, 0.1) 70%),
+      linear-gradient(0deg, rgba(20, 7, 15, 0.9) 0%, rgba(20, 7, 15, 0) 40%); }
+  .pv-chamada { position: relative; z-index: 5; max-width: 34rem; padding: var(--seg-esp-8) 0; }
+  .pv-chamada h1 { margin: var(--seg-esp-3) 0 var(--seg-esp-4); }
+  .pv-chamada p { color: var(--seg-claro-2); font-size: var(--seg-texto-lg); max-width: 46ch; }
+  .pv-acoes { display: flex; flex-wrap: wrap; gap: var(--seg-esp-3); margin-top: var(--seg-esp-5); }
+  .pv-painel { display: grid; gap: var(--seg-esp-5); grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); margin-top: calc(-1 * var(--seg-esp-7)); position: relative; z-index: 6; }
+  .pv-geral { display: grid; grid-template-columns: auto 1fr; gap: var(--seg-esp-5); align-items: center; }
+  .pv-perfil dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--seg-esp-2) var(--seg-esp-4); margin: 0; font-size: var(--seg-texto-sm); }
+  .pv-perfil dt { font-family: var(--seg-fonte-mono); font-size: var(--seg-texto-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--seg-gelo); align-self: center; }
+  .pv-perfil dd { margin: 0; color: var(--seg-claro); }
+  .pv-modulos { display: grid; gap: var(--seg-esp-4); grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .pv-modulo { display: grid; grid-template-columns: 1fr auto; gap: var(--seg-esp-3); align-items: center; min-height: 148px; text-decoration: none; color: inherit; }
+  .pv-modulo .seg-hud__cabecalho { grid-column: 1 / -1; margin-bottom: 0; }
+  .pv-modulo .seg-hud__cabecalho > span:first-child { text-transform: none; letter-spacing: 0.02em; }
+  .pv-modulo h3 { font-size: var(--seg-texto-lg); margin: var(--seg-esp-1) 0 var(--seg-esp-2); }
+  .pv-modulo:hover { --seg-canto-cor: var(--seg-magenta-claro); }
+  .pv-modulo .seg-progresso { grid-column: 1 / -1; }
+  .pv-kit { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--seg-esp-4); }
+  @media (max-width: 900px) { .pv-palco .seg-foto__alvo { display: none; } .pv-palco .seg-foto img { object-position: 78% 30%; } }
+  @media (max-width: 860px) { .pv-painel { grid-template-columns: 1fr; margin-top: 0; } .pv-geral { grid-template-columns: 1fr; justify-items: start; } }
+</style>
+</head>
+<body class="seg-app">
+<header class="seg-topo">
+  <div class="seg-conteudo seg-topo__interno">
+    <a class="seg-marca" href="#inicio"><span class="seg-marca__simbolo" aria-hidden="true"></span>SegMPE <span class="seg-marca__modulo">Suíte · centro de operações</span></a>
+    <nav class="seg-topo__nav" aria-label="Suíte">
+      <a href="#perfil" aria-current="page">Perfil</a><a href="#modulos">Módulos</a><a href="#kit">Kit final</a>
+    </nav>
+  </div>
+</header>
+<div class="seg-faixa">Prévia com dados fictícios (EP-91) · é assim que a suíte fica quando os 7 módulos estiverem prontos</div>
+
+<main id="inicio">
+  <section class="pv-palco" aria-labelledby="pv-titulo">
+    <figure class="seg-foto seg-foto--varrendo" aria-hidden="true">
+      <img src="img/capa-medica.webp" alt="" width="1080" height="602">
+      <div class="seg-foto__alvo" style="--x:56%; --y:56%; --w:13%; --h:26%; --i:0"><span>alvo · prontuários no notebook</span></div>
+      <div class="seg-foto__alvo seg-foto__alvo--gelo" style="--x:73%; --y:80%; --w:13%; --h:11%; --i:1"><span>alvo · senha anotada?</span></div>
+      <div class="seg-foto__alvo seg-foto__alvo--gelo seg-foto__alvo--esquerda" style="--x:83%; --y:54%; --w:9%; --h:14%; --i:2"><span>alvo · Wi-Fi do consultório</span></div>
+    </figure>
+    <div class="seg-conteudo">
+      <div class="pv-chamada">
+        <span class="seg-chamada">Diagnóstico · EP-91 · consultório</span>
+        <h1 id="pv-titulo">Segurança do seu negócio, frente por frente</h1>
+        <p>Sete diagnósticos curtos — dados, riscos, política, site, golpes, senhas e backup — para quem trabalha por conta própria ou com uma equipe pequena.</p>
+        <div class="pv-acoes">
+          <a class="seg-botao" href="#modulos">Continuar o diagnóstico</a>
+          <a class="seg-botao seg-botao--secundario" href="#kit">Ver o Kit final</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="seg-conteudo seg-pilha-lg" style="padding-bottom: var(--seg-esp-8)">
+    <div class="pv-painel">
+      <section class="seg-hud seg-revelar pv-geral" aria-labelledby="pv-geral-t" style="--i:0">
+        <div class="seg-anel" id="anel-geral" data-valor="61"><span class="seg-anel__valor"><span class="seg-anel__num">61</span><small>índice geral</small></span></div>
+        <div>
+          <div class="seg-hud__cabecalho"><span>Painel geral</span><span class="seg-hud__status seg-hud__status--alerta">em andamento</span></div>
+          <h2 id="pv-geral-t" style="font-size: var(--seg-texto-xl)">Atenção em 3 frentes</h2>
+          <p>Senhas e backup puxam o índice para baixo. Comece por elas: são as correções mais rápidas.</p>
+          <ul class="seg-telemetria"><li>4 de 7 módulos concluídos</li><li>última análise 17/11 21:40</li></ul>
+        </div>
+      </section>
+      <section class="seg-hud seg-revelar pv-perfil" id="perfil" aria-labelledby="pv-perfil-t" style="--i:1">
+        <div class="seg-hud__cabecalho"><span id="pv-perfil-t">Perfil comum · EP-91</span><span class="seg-hud__status">completo</span></div>
+        <dl>
+          <dt>Ramo</dt><dd>Saúde · consultório</dd>
+          <dt>Porte</dt><dd>ME · 2 a 5 pessoas</dd>
+          <dt>UF</dt><dd>DF</dd>
+          <dt>Canais</dt><dd>WhatsApp, Instagram, telefone</dd>
+          <dt>Dados</dt><dd>Contato, CPF e <strong>dados de saúde</strong></dd>
+          <dt>Equipamentos</dt><dd>Notebook, celular pessoal</dd>
+        </dl>
+      </section>
+    </div>
+
+    <section id="modulos" aria-labelledby="pv-mod-t">
+      <div class="seg-secao-titulo"><span class="seg-chamada">7 frentes</span><h2 id="pv-mod-t">Módulos do diagnóstico</h2></div>
+      <div class="pv-modulos" id="lista-modulos"></div>
+    </section>
+
+    <section class="seg-hud seg-revelar pv-kit" id="kit" aria-labelledby="pv-kit-t">
+      <div>
+        <div class="seg-hud__cabecalho"><span>Kit final</span><span class="seg-hud__status seg-hud__status--alerta">aguardando 3 módulos</span></div>
+        <h2 id="pv-kit-t" style="font-size: var(--seg-texto-xl)">Relatórios e materiais prontos para a empresa</h2>
+        <p>Quando os 7 módulos forem aprovados, o curador monta o Kit com o nome real da empresa — só ele tem esse dado.</p>
+      </div>
+      <button class="seg-botao" type="button" id="btn-kit">Simular geração do Kit</button>
+    </section>
+  </div>
+</main>
+<footer class="seg-rodape"><div class="seg-conteudo"><strong>SegMPE</strong> · projeto acadêmico do CEUB · Segurança Cibernética 2º/2026 · Prévia com dados fictícios. Foto ilustrativa gerada por IA.</div></footer>
+
+<script type="module">
+import { animarIndice, criarAnelIndice, revelarPaineis, ativarInclinacao, iniciarVarredura, pararVarredura, semaforoDoIndice, criarSeloSemaforo, anunciar } from "./segmpe.js";
+
+const MODULOS = [
+  { n: "M1", id: "m1-dados", nome: "Dados e Privacidade", indice: 72 },
+  { n: "M2", id: "m2-riscos", nome: "Avaliação de Riscos", indice: 58 },
+  { n: "M3", id: "m3-psi", nome: "Política de Segurança", indice: 81 },
+  { n: "M4", id: "m4-site", nome: "Site e Presença Digital", indice: 66 },
+  { n: "M5", id: "m5-golpes", nome: "Conscientização e Golpes", progresso: 60 },
+  { n: "M6", id: "m6-contas", nome: "Contas e Senhas", progresso: 25 },
+  { n: "M7", id: "m7-backup", nome: "Backup e Incidentes" },
+];
+const lista = document.getElementById("lista-modulos");
+MODULOS.forEach((m, i) => {
+  const a = document.createElement("a");
+  a.className = "seg-hud seg-revelar pv-modulo"; a.href = `#${m.id}`; a.style.setProperty("--i", String(i));
+  const txt = document.createElement("div");
+  const cab = document.createElement("div"); cab.className = "seg-hud__cabecalho";
+  const cod = document.createElement("span"); cod.textContent = `/${m.id}/`;
+  const st = document.createElement("span"); st.className = "seg-hud__status" + (m.indice === undefined ? (m.progresso ? " seg-hud__status--alerta" : " seg-hud__status--critico") : "");
+  st.textContent = m.indice !== undefined ? "concluído" : m.progresso ? "em andamento" : "não iniciado";
+  cab.append(cod, st);
+  const h = document.createElement("h3"); h.textContent = m.nome;
+  txt.append(h);
+  a.append(cab, txt);
+  if (m.indice !== undefined) {
+    const anel = criarAnelIndice(document, undefined, { pequeno: true }); anel.dataset.valor = String(m.indice);
+    a.append(anel);
+    txt.append(criarSeloSemaforo(document, semaforoDoIndice(m.indice)));
+  } else {
+    const p = document.createElement("div"); p.className = "seg-progresso";
+    const r = document.createElement("div"); r.className = "seg-progresso__rotulo";
+    const r1 = document.createElement("span"); r1.textContent = m.progresso ? "perguntas respondidas" : "aguardando início";
+    const r2 = document.createElement("span"); r2.textContent = `${m.progresso ?? 0}%`;
+    r.append(r1, r2);
+    const pr = document.createElement("progress"); pr.max = 100; pr.value = m.progresso ?? 0; pr.setAttribute("aria-label", `${m.nome}: ${m.progresso ?? 0}%`);
+    p.append(r, pr); a.append(p);
+  }
+  lista.append(a);
+});
+
+revelarPaineis();
+document.querySelectorAll(".pv-modulo, .pv-painel > .seg-hud").forEach((el) => ativarInclinacao(el, { maximo: 4 }));
+
+// os anéis enchem quando aparecem na tela (o número final já está no HTML/aria)
+const anelObs = "IntersectionObserver" in window ? new IntersectionObserver((es) => {
+  for (const e of es) if (e.isIntersecting) { animarIndice(e.target, Number(e.target.dataset.valor)); anelObs.unobserve(e.target); }
+}, { threshold: 0.4 }) : null;
+document.querySelectorAll(".seg-anel[data-valor]").forEach((el) => anelObs ? anelObs.observe(el) : animarIndice(el, Number(el.dataset.valor), { duracao: 0 }));
+
+const kit = document.getElementById("kit"), btn = document.getElementById("btn-kit");
+btn.addEventListener("click", () => {
+  if (btn.getAttribute("aria-busy") === "true") return;
+  btn.setAttribute("aria-busy", "true"); btn.textContent = "Gerando…";
+  iniciarVarredura(kit, "Simulando a geração do Kit.");
+  setTimeout(() => { pararVarredura(kit, "Simulação concluída."); btn.removeAttribute("aria-busy"); btn.textContent = "Simular geração do Kit"; }, 3200);
+});
+</script>
+</body>
+</html>
