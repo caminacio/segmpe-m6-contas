@@ -18,6 +18,9 @@ import {
   baixarJSON,
   imprimir,
   anunciar,
+  animarIndice,
+  iniciarVarredura,
+  pararVarredura,
 } from "./ds/segmpe.js";
 
 const ID = document.body.dataset.modulo;
@@ -320,7 +323,8 @@ async function gerar() {
   limpar($("#mensagem-revisao"));
   limpar($("#mensagem-relatorio"));
   mostrar("tela-gerando");
-  anunciar("Gerando o relatório. Isso leva alguns segundos.");
+  // Varredura no cartão enquanto a IA trabalha (desliga sozinha com "reduzir movimento").
+  iniciarVarredura($("#cartao-gerando"), "Gerando o relatório. Isso leva alguns segundos.");
   let resposta;
   let dados;
   try {
@@ -331,10 +335,12 @@ async function gerar() {
     });
     dados = await resposta.json();
   } catch {
+    pararVarredura($("#cartao-gerando"));
     mostrar("tela-revisao");
     aviso($("#mensagem-revisao"), "erro", "Não foi possível falar com o módulo. Confirme se ele está no ar e tente de novo.");
     return;
   }
+  pararVarredura($("#cartao-gerando"));
 
   if (resposta.ok) {
     estado.saida = dados;
@@ -373,9 +379,8 @@ function mostrarBlocosDaIA(visivel) {
 function montarPontuacao(pontuacao) {
   const indice = Number(pontuacao?.indice ?? 0);
   const semaforo = pontuacao?.semaforo ?? semaforoDoIndice(indice);
-  $("#indice-valor").textContent = String(indice);
-  $("#indice-marcador").style.left = `${Math.min(Math.max(indice, 0), 100)}%`;
-  $("#indice-barra").setAttribute("aria-label", `Índice ${indice} de 100`);
+  // O anel enche até o índice, com a cor do semáforo (o número final fica no aria-label).
+  animarIndice($("#indice-anel"), indice);
 
   const selo = $("#indice-selo");
   limpar(selo);

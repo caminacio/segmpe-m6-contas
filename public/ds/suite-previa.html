@@ -9,7 +9,7 @@
   /* Só desta prévia: a composição da tela inicial da suíte. Os componentes vêm do segmpe.css. */
   .pv-palco { position: relative; min-height: min(640px, 82vh); display: grid; align-items: center; overflow: hidden; border-bottom: 1px solid var(--seg-gelo-linha); }
   .pv-palco .seg-foto { position: absolute; inset: 0; border: 0; }
-  .pv-palco .seg-foto img { object-position: 70% 40%; }
+  .pv-palco .seg-foto img, .pv-palco .seg-foto video { object-position: 70% 40%; }
   .pv-palco .seg-foto::before { background:
       var(--seg-cantoneiras),
       repeating-linear-gradient(0deg, rgba(169, 200, 242, 0.05) 0 1px, transparent 1px 3px),
@@ -50,10 +50,8 @@
 <main id="inicio">
   <section class="pv-palco" aria-labelledby="pv-titulo">
     <figure class="seg-foto seg-foto--varrendo" aria-hidden="true">
-      <img src="img/capa-medica.webp" alt="" width="1080" height="602">
-      <div class="seg-foto__alvo" style="--x:56%; --y:56%; --w:13%; --h:26%; --i:0"><span>alvo · prontuários no notebook</span></div>
-      <div class="seg-foto__alvo seg-foto__alvo--gelo" style="--x:73%; --y:80%; --w:13%; --h:11%; --i:1"><span>alvo · senha anotada?</span></div>
-      <div class="seg-foto__alvo seg-foto__alvo--gelo seg-foto__alvo--esquerda" style="--x:83%; --y:54%; --w:9%; --h:14%; --i:2"><span>alvo · Wi-Fi do consultório</span></div>
+      <img src="img/capa-medica-loop.webp" alt="" width="1280" height="720">
+      <video src="img/capa-medica-loop.mp4" poster="img/capa-medica-loop.webp" muted loop playsinline preload="metadata" aria-hidden="true"></video>
     </figure>
     <div class="seg-conteudo">
       <div class="pv-chamada">
@@ -110,7 +108,7 @@
 <footer class="seg-rodape"><div class="seg-conteudo"><strong>SegMPE</strong> · projeto acadêmico do CEUB · Segurança Cibernética 2º/2026 · Prévia com dados fictícios. Foto ilustrativa gerada por IA.</div></footer>
 
 <script type="module">
-import { animarIndice, criarAnelIndice, revelarPaineis, ativarInclinacao, iniciarVarredura, pararVarredura, semaforoDoIndice, criarSeloSemaforo, anunciar } from "./segmpe.js";
+import { movimentoReduzido, animarIndice, criarAnelIndice, revelarPaineis, ativarInclinacao, iniciarVarredura, pararVarredura, semaforoDoIndice, criarSeloSemaforo, anunciar } from "./segmpe.js";
 
 const MODULOS = [
   { n: "M1", id: "m1-dados", nome: "Dados e Privacidade", indice: 72 },
@@ -151,6 +149,9 @@ MODULOS.forEach((m, i) => {
 });
 
 revelarPaineis();
+// vídeo da capa: só toca se o sistema não pedir menos movimento (a foto fica por baixo)
+const video = document.querySelector('.pv-palco video');
+if (video && !movimentoReduzido()) video.play().catch(() => {});
 document.querySelectorAll(".pv-modulo, .pv-painel > .seg-hud").forEach((el) => ativarInclinacao(el, { maximo: 4 }));
 
 // os anéis enchem quando aparecem na tela (o número final já está no HTML/aria)

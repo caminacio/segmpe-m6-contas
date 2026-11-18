@@ -222,6 +222,7 @@ code, pre, kbd, samp { font-family: var(--seg-fonte-mono); font-size: 0.88em; }
 }
 .seg-cartao--noite h2, .seg-cartao--noite h3, .seg-hud h2, .seg-hud h3 { color: var(--seg-claro); }
 .seg-cartao--noite p, .seg-hud p { color: var(--seg-claro-2); }
+.seg-cartao--noite .seg-ajuda-texto, .seg-hud .seg-ajuda-texto { color: var(--seg-claro-2); }
 .seg-cartao__rotulo { display: inline-block; font-family: var(--seg-fonte-mono); font-size: var(--seg-texto-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--seg-magenta-texto); font-weight: 600; margin-bottom: var(--seg-esp-1); }
 .seg-cartao--noite .seg-cartao__rotulo, .seg-hud .seg-cartao__rotulo { color: var(--seg-gelo); }
 
@@ -466,6 +467,8 @@ textarea.seg-entrada { min-height: 96px; resize: vertical; }
 /* 14.3 Foto com moldura de mira, marcações e varredura */
 .seg-foto { --seg-canto-cor: var(--seg-gelo-forte); --seg-canto: 22px; position: relative; margin: 0; overflow: hidden; isolation: isolate; background: var(--seg-noite-950); border: 1px solid var(--seg-gelo-linha); }
 .seg-foto img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.92) contrast(1.06); transform: scale(1.02); }
+.seg-foto video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.92) contrast(1.06); }
+@media (prefers-reduced-motion: reduce) { .seg-foto video { display: none; } }
 .seg-foto::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background:
     var(--seg-cantoneiras),
     repeating-linear-gradient(0deg, rgba(169, 200, 242, 0.05) 0 1px, transparent 1px 3px),
@@ -517,6 +520,14 @@ textarea.seg-entrada { min-height: 96px; resize: vertical; }
 .seg-anel--verde { --seg-anel-cor: var(--seg-verde-luz); }
 .seg-anel--amarelo { --seg-anel-cor: var(--seg-amarelo-luz); }
 .seg-anel--vermelho { --seg-anel-cor: var(--seg-vermelho-luz); }
+/* anel sobre o papel (relatório e impressão): disco claro e cores do semáforo com contraste AA */
+.seg-cartao:not(.seg-cartao--noite) .seg-anel { background: radial-gradient(circle, var(--seg-papel) 0 60%, transparent 60.5%), conic-gradient(var(--seg-anel-cor) calc(var(--seg-p) * 1%), rgba(30, 18, 32, 0.10) 0); box-shadow: 0 0 0 1px var(--seg-linha); }
+.seg-cartao:not(.seg-cartao--noite) .seg-anel::before { background: repeating-conic-gradient(var(--seg-linha-forte) 0 1deg, transparent 1deg 9deg); }
+.seg-cartao:not(.seg-cartao--noite) .seg-anel__valor { color: var(--seg-tinta); }
+.seg-cartao:not(.seg-cartao--noite) .seg-anel__valor small { color: var(--seg-tinta-2); }
+.seg-cartao:not(.seg-cartao--noite) .seg-anel--verde { --seg-anel-cor: var(--seg-verde); }
+.seg-cartao:not(.seg-cartao--noite) .seg-anel--amarelo { --seg-anel-cor: var(--seg-amarelo); }
+.seg-cartao:not(.seg-cartao--noite) .seg-anel--vermelho { --seg-anel-cor: var(--seg-vermelho); }
 .seg-anel--pequeno { --seg-anel-tam: 76px; }
 .seg-anel--pequeno::before { inset: -6px; }
 .seg-anel--pequeno .seg-anel__valor small { display: none; }

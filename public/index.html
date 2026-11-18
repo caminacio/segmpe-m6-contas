@@ -89,7 +89,7 @@
     <!-- 4. Gerando ------------------------------------------------------ -->
     <section id="tela-gerando" aria-labelledby="t-gerando" hidden>
       <h2 id="t-gerando" class="seg-visualmente-oculto">Gerando o relatório</h2>
-      <div class="seg-cartao">
+      <div class="seg-cartao seg-cartao--noite" id="cartao-gerando">
         <div class="seg-gerando" role="status" aria-live="polite">
           <div class="seg-gerando__anel" aria-hidden="true"></div>
           <strong>Gerando o relatório…</strong>
@@ -116,9 +116,8 @@
 
           <h3>Como está hoje</h3>
           <div class="seg-indice">
-            <div class="seg-indice__numero" id="indice-numero"><span id="indice-valor">0</span><small> / 100</small></div>
+            <div class="seg-anel" id="indice-anel" role="img" aria-label="Índice geral"><span class="seg-anel__valor"><span class="seg-anel__num" id="indice-valor">0</span><small>de 100</small></span></div>
             <div id="indice-selo"></div>
-            <div class="seg-indice__barra" id="indice-barra" role="img" aria-label="Índice geral"><span class="seg-indice__marcador" id="indice-marcador" style="left:0%"></span></div>
           </div>
           <ul class="seg-temas" id="relatorio-temas"></ul>
 
