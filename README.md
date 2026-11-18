@@ -3,16 +3,6 @@
 > Módulo do grupo G6 · porta 3006 · Projeto acadêmico CEUB — Segurança Cibernética, 2º/2026.
 > Preencha todas as seções deste README. O que fica em branco conta como pendência na entrega (`CONTRATO.md`, seção 16).
 
-## Primeiro passo (uma única vez, logo após clonar)
-
-```bash
-npm install
-npm run configurar -- m6-contas 3006 G6
-```
-
-O comando troca os marcadores `m6-contas`, `3006` e `G6` em todos os arquivos e depois se apaga.
-Use o identificador, a porta e o grupo da tabela do `CONTRATO.md` (seção 2) — por exemplo: `npm run configurar -- m3-psi 3003 G3`.
-
 ## O que o módulo faz
 
 (1 ou 2 parágrafos, em linguagem simples: o que a empresa responde, o que recebe de volta e para que serve.)
