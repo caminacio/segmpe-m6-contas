@@ -1,140 +1,230 @@
 {
   "modulo": "m6-contas",
   "versao": "1.0.0",
-  "_leia": "PERGUNTAS DE EXEMPLO. Troque todas pelas do seu módulo, mantendo as regras do CONTRATO.md (seção 6): 10 a 15 perguntas, no máximo 3 de texto_curto, toda pergunta fechada com a opção nao_sei, tema sempre entre os temas do modulo.json.",
   "perguntas": [
     {
       "id": "M6_Q01",
-      "tema": "Responsáveis e acessos (exemplo)",
-      "tipo": "sim_nao",
+      "tema": "Contas e responsáveis",
+      "tipo": "multipla",
+      "pontua": false,
       "obrigatoria": true,
-      "texto": "Existe uma pessoa responsável por cuidar da tecnologia da empresa?",
-      "ajuda": "Pode ser o dono, um funcionário ou uma empresa contratada. Vale quem as pessoas procuram quando o computador ou o sistema dá problema.",
+      "texto": "Quais tipos de contas digitais a empresa utiliza?",
+      "ajuda": "Marque todos que se aplicam. Esta pergunta ajuda a montar o inventário e não entra na nota.",
       "opcoes": [
-        { "valor": "sim", "rotulo": "Sim", "pontos": 2 },
-        { "valor": "nao", "rotulo": "Não", "pontos": 0 },
+        { "valor": "email", "rotulo": "E-mail corporativo", "pontos": 0 },
+        { "valor": "banco", "rotulo": "Banco e serviços financeiros", "pontos": 0 },
+        { "valor": "redes_sociais", "rotulo": "Redes sociais", "pontos": 0 },
+        { "valor": "mensagens", "rotulo": "WhatsApp ou outros aplicativos de mensagens", "pontos": 0 },
+        { "valor": "vendas_gestao", "rotulo": "Sistema de vendas ou gestão", "pontos": 0 },
+        { "valor": "nuvem", "rotulo": "Armazenamento em nuvem", "pontos": 0 },
+        { "valor": "certificado", "rotulo": "Certificado digital e-CNPJ", "pontos": 0 },
+        { "valor": "outras", "rotulo": "Outras", "pontos": 0 },
         { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
       ]
     },
     {
       "id": "M6_Q02",
-      "tema": "Responsáveis e acessos (exemplo)",
+      "tema": "Contas e responsáveis",
       "tipo": "escolha_unica",
       "obrigatoria": true,
-      "texto": "Quando alguém deixa de trabalhar na empresa, os acessos dessa pessoa são retirados?",
-      "ajuda": "Retirar acesso é apagar o usuário ou trocar a senha dos sistemas, do e-mail e do WhatsApp da empresa.",
+      "texto": "A empresa sabe quem possui acesso a cada conta digital importante?",
+      "ajuda": "Pense se existe uma forma de saber quais contas existem e quem pode entrar nelas.",
       "opcoes": [
-        { "valor": "sempre", "rotulo": "Sim, sempre", "pontos": 2 },
-        { "valor": "as_vezes", "rotulo": "Às vezes", "pontos": 1 },
-        { "valor": "nunca", "rotulo": "Nunca", "pontos": 0 },
-        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 },
-        { "valor": "nao_se_aplica", "rotulo": "Não se aplica (ninguém saiu até hoje)", "pontos": 0 }
+        { "valor": "todas", "rotulo": "Todas identificadas", "pontos": 2 },
+        { "valor": "algumas", "rotulo": "Algumas", "pontos": 1 },
+        { "valor": "nenhuma", "rotulo": "Não existe esse levantamento", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
       ]
     },
     {
       "id": "M6_Q03",
-      "tema": "Rotinas do dia a dia (exemplo)",
-      "tipo": "multipla",
+      "tema": "Contas e responsáveis",
+      "tipo": "escolha_unica",
       "obrigatoria": true,
-      "maximo": 2,
-      "texto": "Quais destes cuidados a empresa já tem hoje?",
-      "ajuda": "Marque todos os que já existem. Se não tiver nenhum, marque \"Nenhum desses\" — isso não é problema, serve para sabermos por onde começar.",
+      "texto": "Quem é responsável por administrar as contas digitais críticas da empresa?",
+      "ajuda": "Responsável é quem cuida dos acessos, da recuperação e da verificação em duas etapas.",
       "opcoes": [
-        { "valor": "senha_por_pessoa", "rotulo": "Cada pessoa tem o seu próprio usuário e senha", "pontos": 1 },
-        { "valor": "duas_etapas", "rotulo": "O e-mail da empresa pede um código além da senha", "pontos": 1 },
-        { "valor": "antivirus", "rotulo": "Os computadores têm antivírus ativo", "pontos": 1 },
-        { "valor": "nenhum", "rotulo": "Nenhum desses", "pontos": 0 },
+        { "valor": "proprietario", "rotulo": "Apenas o proprietário", "pontos": 1 },
+        { "valor": "funcionarios", "rotulo": "Um ou mais funcionários específicos", "pontos": 2 },
+        { "valor": "proprietario_funcionarios", "rotulo": "Proprietário e funcionários compartilham a administração", "pontos": 2 },
+        { "valor": "nenhum", "rotulo": "Não há responsáveis definidos", "pontos": 0 },
         { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
       ]
     },
     {
       "id": "M6_Q04",
-      "tema": "Rotinas do dia a dia (exemplo)",
-      "tipo": "escala_1_5",
+      "tema": "Senhas",
+      "tipo": "escolha_unica",
       "obrigatoria": true,
-      "texto": "De 1 a 5, o quanto a equipe saberia o que fazer se algo estranho acontecesse com o computador ou o sistema?",
-      "ajuda": "1 é \"ninguém saberia o que fazer\" e 5 é \"todos sabem a quem avisar e o que não fazer\".",
-      "legenda": { "minimo": "1 · ninguém saberia", "maximo": "5 · todos sabem" },
+      "texto": "Como são utilizadas as senhas nas contas da empresa?",
+      "ajuda": "Pense se uma mesma senha é usada em mais de uma conta importante. Não escreva nenhuma senha.",
       "opcoes": [
-        { "valor": "1", "rotulo": "1", "pontos": 0 },
-        { "valor": "2", "rotulo": "2", "pontos": 0 },
-        { "valor": "3", "rotulo": "3", "pontos": 1 },
-        { "valor": "4", "rotulo": "4", "pontos": 2 },
-        { "valor": "5", "rotulo": "5", "pontos": 2 },
+        { "valor": "diferentes", "rotulo": "Cada conta tem senha diferente", "pontos": 2 },
+        { "valor": "algumas_repetidas", "rotulo": "Algumas usam a mesma senha", "pontos": 1 },
+        { "valor": "maioria_repetida", "rotulo": "A maioria usa a mesma senha", "pontos": 0 },
         { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
       ]
     },
     {
       "id": "M6_Q05",
-      "tema": "Canais e atendimento (exemplo)",
-      "tipo": "sim_nao",
+      "tema": "Verificação em duas etapas",
+      "tipo": "escolha_unica",
       "obrigatoria": true,
-      "condicao": { "perfil": "P11_site", "igual": "sim" },
-      "texto": "O endereço do site da empresa aparece com o cadeado fechado no navegador?",
-      "ajuda": "O cadeado fica antes do endereço e indica que a conexão é protegida (https). Esta pergunta só aparece porque o perfil disse que a empresa tem site.",
+      "texto": "A verificação em duas etapas está ativada nas contas importantes?",
+      "ajuda": "É uma proteção extra que pede confirmação além da senha, como um código ou aprovação no celular.",
       "opcoes": [
-        { "valor": "sim", "rotulo": "Sim", "pontos": 2 },
-        { "valor": "nao", "rotulo": "Não", "pontos": 0 },
+        { "valor": "todas", "rotulo": "Em todas", "pontos": 2 },
+        { "valor": "algumas", "rotulo": "Só em algumas", "pontos": 1 },
+        { "valor": "nenhuma", "rotulo": "Em nenhuma", "pontos": 0 },
         { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
       ]
     },
     {
       "id": "M6_Q06",
-      "tema": "Canais e atendimento (exemplo)",
+      "tema": "Desligamentos e recuperação",
       "tipo": "escolha_unica",
       "obrigatoria": true,
-      "texto": "Quem pode responder o WhatsApp ou as redes sociais da empresa?",
-      "ajuda": "Vale saber se é uma pessoa só, um grupo definido ou se qualquer pessoa da equipe responde.",
+      "texto": "Quando um funcionário deixa a empresa, o que acontece com os acessos dele?",
+      "ajuda": "Considere o cancelamento de usuários, a troca de senhas compartilhadas e o acesso a contas da empresa.",
       "opcoes": [
-        { "valor": "pessoas_definidas", "rotulo": "Apenas pessoas definidas pelo dono", "pontos": 2 },
-        { "valor": "equipe_toda", "rotulo": "Qualquer pessoa da equipe", "pontos": 1 },
-        { "valor": "sem_controle", "rotulo": "Ninguém controla isso", "pontos": 0 },
+        { "valor": "imediato", "rotulo": "São cancelados imediatamente", "pontos": 2 },
+        { "valor": "atrasado", "rotulo": "São cancelados, nem sempre na hora", "pontos": 1 },
+        { "valor": "alguns_ativos", "rotulo": "Alguns continuam ativos", "pontos": 0 },
+        { "valor": "sem_procedimento", "rotulo": "Não há procedimento", "pontos": 0 },
+        { "valor": "nao_se_aplica", "rotulo": "Ninguém saiu até hoje", "pontos": 0 },
         { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
       ]
     },
     {
       "id": "M6_Q07",
-      "tema": "Responsáveis e acessos (exemplo)",
-      "tipo": "sim_nao",
+      "tema": "Senhas",
+      "tipo": "multipla",
       "obrigatoria": true,
-      "texto": "A empresa tem uma lista dos sistemas e serviços que usa?",
-      "ajuda": "Uma lista simples, em papel ou planilha, com o nome de cada sistema e quem cuida dele.",
+      "texto": "Como as senhas são guardadas ou compartilhadas na equipe?",
+      "ajuda": "Marque todas as práticas que existem. Para a nota, conta a prática de menor proteção marcada. Não escreva nenhuma senha.",
       "opcoes": [
-        { "valor": "sim", "rotulo": "Sim", "pontos": 2 },
-        { "valor": "nao", "rotulo": "Não", "pontos": 0 },
+        { "valor": "gerenciador", "rotulo": "Em um gerenciador de senhas", "pontos": 2 },
+        { "valor": "papel_planilha", "rotulo": "Anotadas em papel ou planilha", "pontos": 0 },
+        { "valor": "mensagens", "rotulo": "Enviadas por aplicativo de mensagens ou e-mail", "pontos": 0 },
+        { "valor": "navegador", "rotulo": "Salvas no navegador", "pontos": 1 },
+        { "valor": "decoradas_sem_compartilhar", "rotulo": "Cada pessoa decora a sua senha, sem compartilhar", "pontos": 2 },
         { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
       ]
     },
     {
       "id": "M6_Q08",
-      "tema": "Rotinas do dia a dia (exemplo)",
+      "tema": "Certificado digital",
       "tipo": "escolha_unica",
-      "obrigatoria": false,
-      "pontua": false,
-      "texto": "Quantas horas por semana alguém dedica à parte de tecnologia da empresa?",
-      "ajuda": "Pergunta de contexto: ajuda a IA a sugerir medidas do tamanho da sua rotina. Não entra na nota.",
+      "obrigatoria": true,
+      "condicao": { "resposta": "M6_Q01", "contem": "certificado" },
+      "texto": "A empresa possui certificado digital e-CNPJ e como ele é protegido?",
+      "ajuda": "Pense em quem guarda o arquivo, o cartão ou o token e a senha de proteção. Não escreva nenhuma senha.",
       "opcoes": [
-        { "valor": "menos_de_1", "rotulo": "Menos de 1 hora", "pontos": 0 },
-        { "valor": "1_a_5", "rotulo": "De 1 a 5 horas", "pontos": 0 },
-        { "valor": "mais_de_5", "rotulo": "Mais de 5 horas", "pontos": 0 },
+        { "valor": "nao_se_aplica", "rotulo": "Não usamos", "pontos": 0 },
+        { "valor": "responsavel", "rotulo": "Token, cartão ou arquivo com senha protegido pelo responsável", "pontos": 2 },
+        { "valor": "varios", "rotulo": "Arquivo e senha em vários computadores ou no caixa", "pontos": 0 },
+        { "valor": "contabilidade", "rotulo": "Entregue à contabilidade sem controle da empresa", "pontos": 0 },
         { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
       ]
     },
     {
       "id": "M6_Q09",
-      "tema": "Rotinas do dia a dia (exemplo)",
-      "tipo": "texto_curto",
-      "obrigatoria": false,
-      "texto": "Qual é a maior preocupação de vocês com as informações da empresa?",
-      "ajuda": "Escreva com suas palavras, em poucas linhas. Não escreva nomes de pessoas, senhas nem dados de clientes."
+      "tema": "Desligamentos e recuperação",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "Se o responsável faltar, o celular principal sumir ou uma conta for bloqueada, a empresa consegue recuperar o acesso?",
+      "ajuda": "Considere recuperação atualizada e mais de uma pessoa autorizada para administrar as contas.",
+      "opcoes": [
+        { "valor": "sim", "rotulo": "Sim, recuperação atualizada e mais de um administrador", "pontos": 2 },
+        { "valor": "parcial", "rotulo": "Recuperação parcial", "pontos": 1 },
+        { "valor": "uma_pessoa", "rotulo": "Não, só uma pessoa tem tudo", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
     },
     {
       "id": "M6_Q10",
-      "tema": "Canais e atendimento (exemplo)",
-      "tipo": "texto_curto",
-      "obrigatoria": false,
-      "texto": "Qual sistema ou serviço vocês mais usam no dia a dia?",
-      "ajuda": "Cite só o nome do sistema (por exemplo: sistema de vendas, agenda on-line). Nunca escreva senhas."
+      "tema": "Aparelhos e equipe",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "Onde os funcionários acessam as contas críticas e o e-mail da empresa?",
+      "ajuda": "Pense nos aparelhos usados e nas regras combinadas para bloqueio e proteção desses acessos.",
+      "opcoes": [
+        { "valor": "empresa", "rotulo": "Só em aparelhos da empresa", "pontos": 2 },
+        { "valor": "pessoais_regras", "rotulo": "Em aparelhos pessoais, com bloqueio e regras combinadas", "pontos": 1 },
+        { "valor": "pessoais_sem_regras", "rotulo": "Em aparelhos pessoais, sem regra", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "M6_Q11",
+      "tema": "Aparelhos e equipe",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "A equipe já recebeu orientação sobre senhas fortes e golpes de roubo de conta?",
+      "ajuda": "Considere orientações que ajudam a pessoa a reconhecer pedidos falsos e cuidar melhor das senhas.",
+      "opcoes": [
+        { "valor": "periodica", "rotulo": "Sim, periodicamente", "pontos": 2 },
+        { "valor": "entrada", "rotulo": "Só informalmente na entrada", "pontos": 1 },
+        { "valor": "nunca", "rotulo": "Nunca", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "M6_Q12",
+      "tema": "Senhas",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "Quando as senhas das contas importantes são trocadas?",
+      "ajuda": "Uma troca deve acontecer ao perceber risco, como vazamento suspeito ou saída de alguém que tinha acesso.",
+      "opcoes": [
+        { "valor": "risco_saida", "rotulo": "Quando há suspeita de vazamento ou alguém com acesso sai", "pontos": 2 },
+        { "valor": "problema", "rotulo": "Só quando dá problema de acesso", "pontos": 1 },
+        { "valor": "calendario", "rotulo": "Por calendário fixo, sem outro critério", "pontos": 1 },
+        { "valor": "nunca", "rotulo": "Nunca foram revistas, nem quando alguém saiu", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "M6_Q13",
+      "tema": "Contas e responsáveis",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "Cada funcionário tem usuário próprio nos sistemas ou há contas compartilhadas?",
+      "ajuda": "Usuário próprio ajuda a saber quem fez cada ação e a retirar o acesso de uma pessoa sem afetar os colegas.",
+      "opcoes": [
+        { "valor": "individual", "rotulo": "Cada funcionário tem usuário próprio", "pontos": 2 },
+        { "valor": "todos", "rotulo": "Todos usam o mesmo login", "pontos": 0 },
+        { "valor": "alguns_setores", "rotulo": "Só alguns setores usam usuários individuais", "pontos": 1 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "M6_Q14",
+      "tema": "Aparelhos e equipe",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "Os celulares e computadores têm bloqueio automático de tela com senha, PIN ou biometria?",
+      "ajuda": "Pense no bloqueio ao deixar o aparelho parado ou ao ligar novamente.",
+      "opcoes": [
+        { "valor": "todos", "rotulo": "Todos", "pontos": 2 },
+        { "valor": "so_celulares", "rotulo": "Só os celulares", "pontos": 1 },
+        { "valor": "nenhum", "rotulo": "Nenhum", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
+    },
+    {
+      "id": "M6_Q15",
+      "tema": "Senhas",
+      "tipo": "escolha_unica",
+      "obrigatoria": true,
+      "texto": "Como são criadas as senhas de novas contas e equipamentos, como roteador, computador e sistemas?",
+      "ajuda": "Pense em novas contas e senhas padrão. Não escreva nenhuma senha.",
+      "opcoes": [
+        { "valor": "longas_exclusivas", "rotulo": "Longas e exclusivas, trocando a senha de fábrica", "pontos": 2 },
+        { "valor": "fabrica", "rotulo": "Mantemos a senha de fábrica", "pontos": 0 },
+        { "valor": "simples", "rotulo": "Usamos senhas simples para não esquecer", "pontos": 0 },
+        { "valor": "nao_sei", "rotulo": "Não sei", "pontos": 0 }
+      ]
     }
   ]
 }

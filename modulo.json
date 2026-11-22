@@ -1,18 +1,29 @@
 {
   "id": "m6-contas",
-  "nome": "Nome do módulo (trocar) — grupo G6",
+  "nome": "Contas e Senhas",
   "versao": "1.0.0",
   "grupo": "G6",
   "temas": [
-    "Responsáveis e acessos (exemplo)",
-    "Rotinas do dia a dia (exemplo)",
-    "Canais e atendimento (exemplo)"
+    "Contas e responsáveis",
+    "Senhas",
+    "Verificação em duas etapas",
+    "Desligamentos e recuperação",
+    "Certificado digital",
+    "Aparelhos e equipe"
   ],
   "artefatos": [
-    { "id": "exemplo", "titulo": "Artefato de exemplo (trocar pelos artefatos do módulo)" }
+    {
+      "id": "inventario-contas",
+      "titulo": "Inventário de contas críticas"
+    },
+    {
+      "id": "guia-duas-etapas",
+      "titulo": "Guia de verificação em duas etapas"
+    }
   ],
   "referencias": [
-    "LGPD — Lei nº 13.709/2018",
-    "Cartilha de Segurança para Internet (CERT.br)"
+    "CERT.br — Cartilha de Segurança para Internet, fascículos Senhas e Autenticação",
+    "NIST SP 800-63B-4 (2025) — autenticação e senhas",
+    "ANPD — Guia orientativo de segurança da informação para agentes de tratamento de pequeno porte (2021)"
   ]
 }
