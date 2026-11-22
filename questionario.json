@@ -116,7 +116,7 @@
       "tema": "Certificado digital",
       "tipo": "escolha_unica",
       "obrigatoria": true,
-      "condicao": { "resposta": "M6_Q01", "contem": "certificado" },
+      "condicao": { "pergunta": "M6_Q01", "em": ["certificado"] },
       "texto": "A empresa possui certificado digital e-CNPJ e como ele é protegido?",
       "ajuda": "Pense em quem guarda o arquivo, o cartão ou o token e a senha de proteção. Não escreva nenhuma senha.",
       "opcoes": [

@@ -2,15 +2,20 @@
   "nome": "Cenário 1 · padaria MEI (fictício)",
   "perfil": "EP-91",
   "respostas": {
-    "M6_Q01": "sim",
-    "M6_Q02": "nao_se_aplica",
-    "M6_Q03": ["nenhum"],
-    "M6_Q04": "2",
-    "M6_Q06": "equipe_toda",
-    "M6_Q07": "nao",
-    "M6_Q08": "menos_de_1",
-    "M6_Q09": "Perder os pedidos anotados no caderno.",
-    "M6_Q10": "Grupo de WhatsApp dos pedidos."
+    "M6_Q01": ["email", "mensagens"],
+    "M6_Q02": "nenhuma",
+    "M6_Q03": "proprietario",
+    "M6_Q04": "algumas_repetidas",
+    "M6_Q05": "algumas",
+    "M6_Q06": "nao_se_aplica",
+    "M6_Q07": ["mensagens", "navegador"],
+    "M6_Q09": "uma_pessoa",
+    "M6_Q10": "pessoais_sem_regras",
+    "M6_Q11": "nunca",
+    "M6_Q12": "calendario",
+    "M6_Q13": "todos",
+    "M6_Q14": "so_celulares",
+    "M6_Q15": "fabrica"
   },
-  "esperado": { "indice": 30, "semaforo": "vermelho" }
+  "esperado": { "indice": 25, "semaforo": "vermelho" }
 }

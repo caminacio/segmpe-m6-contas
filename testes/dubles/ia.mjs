@@ -11,7 +11,7 @@ export const ultimaChamada = { sistema: null, usuario: null, maxTokens: null, te
 function saidaDeExemplo() {
   return {
     resumoParaODono:
-      "Sua empresa já tem cuidados importantes no dia a dia. Faltam poucos ajustes para reduzir o risco de perder informações ou de alguém entrar nas contas sem permissão. O plano abaixo começa pelo que não custa nada.",
+      "Sua empresa já tem cuidados importantes para suas contas digitais. Faltam ajustes para reduzir o risco de acesso indevido e proteger o acesso em casos de falta ou saída de pessoas. O plano abaixo começa pelo que não custa nada.",
     pontosFortes: ["Existe uma pessoa responsável pela tecnologia.", "A equipe sabe a quem avisar quando algo parece errado."],
     pontosDeAtencao: [
       {
@@ -32,9 +32,14 @@ function saidaDeExemplo() {
     ],
     artefatos: [
       {
-        id: "exemplo",
-        titulo: "Artefato de exemplo",
-        conteudoMarkdown: "## Artefato de exemplo\n\nPara que serve: mostrar o formato do artefato nos testes.\n\n### O que fazer\n1. Primeiro passo.\n2. Segundo passo.\n",
+        id: "inventario-contas",
+        titulo: "Inventário de contas críticas",
+        conteudoMarkdown: "## Inventário de contas críticas\n\n| Conta ou serviço | Responsável por função | Verificação em duas etapas | Recuperação atualizada | Segundo administrador |\n|---|---|---|---|---|\n| Exemplo sem dados reais | Administração | A confirmar | A confirmar | A confirmar |\n\nNão inclua senhas, nomes pessoais ou dados de acesso nesta tabela.",
+      },
+      {
+        id: "guia-duas-etapas",
+        titulo: "Guia de verificação em duas etapas",
+        conteudoMarkdown: "## Guia de verificação em duas etapas\n\n1. Identifique uma conta marcada no inventário.\n2. Abra a página oficial de ajuda ou segurança do serviço.\n3. Procure por verificação em duas etapas nas configurações de segurança.\n4. Siga somente os passos da página oficial e confirme com o responsável da conta.\n5. Revise a recuperação e registre quem pode administrar a conta, sem registrar senhas.",
       },
     ],
     avisoLegal: "Material educacional de apoio; não substitui consultoria especializada, auditoria ou assessoria jurídica.",

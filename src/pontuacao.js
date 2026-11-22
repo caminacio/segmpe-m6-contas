@@ -71,6 +71,12 @@ export function pontosDaPergunta(pergunta, resposta) {
   const maximo = maximoDaPergunta(pergunta);
   if (pergunta.tipo === "multipla") {
     const marcadas = Array.isArray(resposta) ? resposta : [resposta];
+    if (pergunta.regraMultipla === "pior_pratica") {
+      const praticas = marcadas.filter((valor) => valor !== "nao_sei");
+      if (praticas.length === 0) return 0;
+      const pior = Math.min(...praticas.map((valor) => pontosDaOpcao(pergunta, valor)));
+      return Math.min(pior, maximo);
+    }
     const soma = marcadas.reduce((total, valor) => total + pontosDaOpcao(pergunta, valor), 0);
     return Math.min(soma, maximo);
   }

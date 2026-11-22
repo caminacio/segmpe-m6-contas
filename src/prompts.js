@@ -69,10 +69,10 @@ export function blocoDeRespostas(questionario, respostas = {}) {
     const resposta = respostas[pergunta.id];
     if (resposta === undefined || resposta === null || resposta === "" || (Array.isArray(resposta) && resposta.length === 0)) continue;
     const valor = Array.isArray(resposta)
-      ? resposta.map((v) => rotuloDaOpcao(pergunta, v)).join("; ")
+      ? textoSeguro(resposta.map((v) => rotuloDaOpcao(pergunta, v)).join("; "))
       : pergunta.tipo === "texto_curto"
         ? textoSeguro(resposta)
-        : rotuloDaOpcao(pergunta, resposta);
+        : textoSeguro(rotuloDaOpcao(pergunta, resposta));
     linhas.push(`- [${pergunta.id}] (${pergunta.tema}) ${textoSeguro(pergunta.texto)}\n  Resposta: ${valor}`);
   }
   return `<respostas>\n${linhas.join("\n")}\n</respostas>`;
