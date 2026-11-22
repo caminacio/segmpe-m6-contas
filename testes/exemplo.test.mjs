@@ -303,3 +303,14 @@ test("sem chave configurada, a mensagem explica o que fazer", async () => {
     Object.assign(process.env, guardado);
   }
 });
+
+test("as saídas fictícias correspondem aos cenários e passam na validação", async () => {
+  for (const cenario of cenarios) {
+    const saida = await lerJSON(`testes/saidas/${cenario.perfil}.json`);
+    assert.equal(saida.modulo, manifesto.id);
+    assert.equal(saida.codinome, cenario.perfil);
+    assert.equal(saida.pontuacao.indice, cenario.esperado.indice);
+    assert.equal(saida.pontuacao.semaforo, cenario.esperado.semaforo);
+    assert.deepEqual(validarSaida(saida, manifesto), []);
+  }
+});
