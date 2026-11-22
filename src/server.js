@@ -18,11 +18,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { calcular, perguntaAplicavel } from "./pontuacao.js";
-import { validarEntrada } from "./validacao.js";
-import { iaConfigurada } from "./ia/adaptador.js";
-// Para implementar o POST /gerar, descomente estas duas linhas:
-// import { montarPrompts } from "./prompts.js";
-// import { gerar as gerarComIA } from "./ia/adaptador.js";
+import { validarEntrada, validarSaida } from "./validacao.js";
+import { iaConfigurada, gerar as gerarComIA } from "./ia/adaptador.js";
+import { montarPrompts } from "./prompts.js";
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PORTA_RESERVA = 3099;
@@ -60,25 +58,64 @@ app.post(`/api/${ID}/gerar`, async (pedido, resposta) => {
   // A pontuação é do código e já funciona: determinística, sem IA.
   const pontuacao = calcular(questionario, { perfil: pedido.body.perfil, respostas: pedido.body.respostas });
 
-  // PENDÊNCIA DO GRUPO — monte os prompts, chame a IA e valide a saída:
-  //
-  //   const { sistema, usuario } = await montarPrompts({
-  //     perfil: pedido.body.perfil, respostas: pedido.body.respostas,
-  //     pontuacao, questionario, manifesto,
-  //   });
-  //   const texto = await gerarComIA({ sistema, usuario });
-  //   const saida = { ...JSON.parse(texto), modulo: ID, versao: manifesto.versao,
-  //                   codinome: pedido.body.perfil.codinome, geradoEm: new Date().toISOString(), pontuacao };
-  //   const problemas = validarSaida(saida, manifesto);   // de ./validacao.js
-  //   if (problemas.length > 0) { /* uma nova tentativa pedindo correção; depois, erro 502 */ }
-  //   return resposta.json(saida);
-  //
-  // JSON inválido da IA: uma nova tentativa; se falhar de novo, 502 com mensagem amigável.
-  return resposta.status(501).json({
-    erro: "A geração do relatório ainda não foi implementada neste módulo.",
-    pontuacao,
-    proximosPassos: "Implemente o POST /gerar em src/server.js seguindo o CONTRATO.md (seções 9 e 10).",
-  });
+  if (!iaConfigurada()) {
+    return resposta.status(502).json({
+      erro: "A IA ainda não está configurada. Confira IA_API_KEY, IA_MODELO e IA_URL no arquivo .env.",
+      pontuacao,
+    });
+  }
+
+  try {
+    const { sistema, usuario } = await montarPrompts({
+      perfil: pedido.body.perfil,
+      respostas: pedido.body.respostas,
+      pontuacao,
+      questionario,
+      manifesto,
+    });
+
+    let texto;
+    let saida;
+
+    for (let tentativa = 0; tentativa < 2; tentativa += 1) {
+      try {
+        texto = tentativa === 0
+          ? await gerarComIA({ sistema, usuario })
+          : await gerarComIA({
+              sistema,
+              usuario: `${usuario}\n\nCORREÇÃO NECESSÁRIA: responda novamente somente com um JSON válido. Não altere os dados já calculados.`,
+            });
+        saida = {
+          ...JSON.parse(texto),
+          modulo: ID,
+          versao: manifesto.versao,
+          codinome: pedido.body.perfil.codinome,
+          geradoEm: new Date().toISOString(),
+          pontuacao,
+        };
+      } catch (erro) {
+        if (erro instanceof SyntaxError) {
+          if (tentativa === 1) {
+            return resposta.status(502).json({ erro: "A IA não conseguiu devolver um JSON válido. Tente gerar o relatório novamente." });
+          }
+          continue;
+        }
+        throw erro;
+      }
+
+      if (validarSaida(saida, manifesto).length === 0) {
+        return resposta.json(saida);
+      }
+      if (tentativa === 1) {
+        return resposta.status(502).json({ erro: "A IA não devolveu todos os dados exigidos. Tente gerar o relatório novamente." });
+      }
+    }
+  } catch (erro) {
+    const mensagem = erro instanceof Error && erro.message
+      ? erro.message
+      : "Não foi possível gerar o relatório agora. Tente novamente.";
+    return resposta.status(502).json({ erro: mensagem });
+  }
 });
 
 // Corpo grande ou JSON malformado
