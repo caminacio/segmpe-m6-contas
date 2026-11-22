@@ -2,9 +2,8 @@
 .env
 node_modules/
 
-# Respostas reais da empresa: só nesta máquina (a pasta fica, o conteúdo não)
-dados/*
-!dados/.gitkeep
+# Respostas reais da empresa
+dados/
 
 # Saídas geradas com dados reais
 testes/saidas/*.real.json
