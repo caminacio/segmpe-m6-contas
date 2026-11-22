@@ -351,24 +351,12 @@ async function gerar() {
     return;
   }
 
-  // 501: o módulo ainda não implementou a geração — a pontuação do código já funciona.
-  if (resposta.status === 501 && dados?.pontuacao) {
-    mostrarBlocosDaIA(false);
-    montarPontuacao(dados.pontuacao);
-    $("#relatorio-titulo").textContent = `${ID} · pontuação`;
-    $("#relatorio-codinome").textContent = estado.perfil.codinome;
-    $("#relatorio-data").textContent = new Date().toLocaleDateString("pt-BR");
-    aviso($("#mensagem-relatorio"), "alerta", `${dados.erro} A pontuação abaixo foi calculada pelo código, sem IA.`);
-    mostrar("tela-relatorio");
-    return;
-  }
-
   mostrar("tela-revisao");
   const detalhes = Array.isArray(dados?.detalhes) && dados.detalhes.length > 0 ? ` ${dados.detalhes[0]}` : "";
   aviso($("#mensagem-revisao"), "erro", `${dados?.erro ?? "Não foi possível gerar o relatório."}${detalhes}`);
 }
 
-/** Esconde as partes que só existem quando a IA responde (útil enquanto /gerar devolve 501). */
+/** Esconde as partes que só existem quando a IA responde. */
 function mostrarBlocosDaIA(visivel) {
   for (const id of ["bloco-resumo", "bloco-fortes", "bloco-atencao", "bloco-plano", "relatorio-artefatos"]) {
     $(`#${id}`).hidden = !visivel;
