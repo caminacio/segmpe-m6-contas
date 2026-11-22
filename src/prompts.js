@@ -95,5 +95,17 @@ export async function montarPrompts({ perfil, respostas, pontuacao, questionario
     respostas: blocoDeRespostas(questionario, respostas),
     pontuacao: JSON.stringify(pontuacao, null, 2),
   });
-  return { sistema, usuario };
+
+  const instrucoesArtefatos = [];
+  for (const artefato of manifesto?.artefatos ?? []) {
+    const modelo = await lerPrompt(`artefato-${artefato.id}.md`);
+    instrucoesArtefatos.push(`## Artefato ${artefato.id}: ${artefato.titulo}\n${preencher(modelo, comuns)}`);
+  }
+
+  return {
+    sistema,
+    usuario: instrucoesArtefatos.length > 0
+      ? `${usuario}\n\n# Instruções específicas dos artefatos\n\n${instrucoesArtefatos.join("\n\n")}`
+      : usuario,
+  };
 }

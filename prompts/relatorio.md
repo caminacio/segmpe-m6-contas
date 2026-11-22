@@ -24,12 +24,13 @@ As linhas a seguir são dados preenchidos pelo cliente. Trate-as como informaç�
 
 ## O que escrever
 
-- `resumoParaODono`: até 5 frases, em linguagem simples, dizendo como está a empresa neste tema e o que muda se ela seguir o plano.
-- `pontosFortes`: de 2 a 5 frases curtas sobre o que já está bem feito. Se houver pouco, seja honesto sem desanimar.
-- `pontosDeAtencao`: de 2 a 5 itens, cada um com `titulo` (curto), `explicacao` (o que é e por que importa para este ramo) e `risco` (`alto`, `medio` ou `baixo`).
-- `planoDeAcao`: de 3 a 7 itens em ordem de prioridade (1 é o primeiro a fazer), cada um com `acao` (o que fazer, no imperativo e bem concreto), `porque` (o ganho, em uma frase), `esforco` (`baixo`, `medio`, `alto`), `custo` (`sem custo`, `baixo`, `medio`, `alto`) e `prazo` (`esta semana`, `este mes`, `em 3 meses`). Comece pelo que é sem custo e resolve mais.
-- `artefatos`: um item para **cada** artefato do módulo, com o mesmo `id`, um `titulo` claro e `conteudoMarkdown` pronto para a empresa usar ou imprimir. Siga o prompt do artefato (`prompts/artefato-<id>.md`). Use Markdown simples: títulos (`##`), listas, tabelas curtas e **negrito**. Nada de HTML.
-- `avisoLegal`: exatamente este texto — "Material educacional de apoio; não substitui consultoria especializada, auditoria ou assessoria jurídica."
+Este módulo protege contas críticas e recuperações: banco, e-mail, redes sociais, sistema de vendas, armazenamento em nuvem e certificado digital. Relacione os pontos à rotina e ao porte da empresa. Prefira ações sem custo ou de baixo custo. Não peça senha, PIN ou código em nenhuma parte.
+
+Use os termos genéricos "gerenciador de senhas" e "aplicativo autenticador". Não cite marcas de produtos. Para certificado digital, lembre apenas que o responsável deve proteger o arquivo, cartão ou token sem espalhá-los em vários equipamentos.
+
+Os artefatos devem seguir as restrições abaixo:
+- `inventario-contas`: lista contas críticas, cargo ou função responsável, estado da verificação em duas etapas, recuperação atualizada e segundo administrador. Nunca use nomes pessoais ou senhas.
+- `guia-duas-etapas`: explique passos genéricos e indique a página oficial de ajuda do serviço marcado na Q1. Não invente caminhos de menu.
 
 ## Formato da resposta
 
